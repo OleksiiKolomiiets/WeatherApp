@@ -54,14 +54,22 @@
 		F299352920AACF530051AE8E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				F299352A20AACF530051AE8E /* AppDelegate.swift */,
 				F299352C20AACF530051AE8E /* ViewController.swift */,
 				F299352E20AACF530051AE8E /* Main.storyboard */,
-				F299353120AACF6C0051AE8E /* Assets.xcassets */,
-				F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */,
 				F299353620AACF6C0051AE8E /* Info.plist */,
+				F299353C20AACFB50051AE8E /* Supporting Files */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		F299353C20AACFB50051AE8E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F299352A20AACF530051AE8E /* AppDelegate.swift */,
+				F299353120AACF6C0051AE8E /* Assets.xcassets */,
+				F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
