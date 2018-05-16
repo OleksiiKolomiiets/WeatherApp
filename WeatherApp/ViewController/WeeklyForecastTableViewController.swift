@@ -42,29 +42,33 @@ class WeeklyForecastTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeeklyForecastCellIdentifier", for: indexPath) as? WeeklyTableViewCell else { return UITableViewCell() }
-        cell.temperatureLabel.text = String(self.forecastData[indexPath.row].temperature)
-        
-        let time = Date(timeIntervalSince1970: TimeInterval(self.forecastData[indexPath.row].time))
-        let formatter = DateFormatter()
-        // initially set the format based on your datepicker date / server String
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let myString = formatter.string(from: time) // string purpose I add here
-        // convert your string to date
-        let yourDate = formatter.date(from: myString)
-        //then again set the date format whhich type of output you need
-        formatter.dateFormat = "dd-MMM-yyyy"
-        // again convert your date to string
-        let myStringafd = formatter.string(from: yourDate!)
-
-        cell.forecastDescriptionLabel.text = "\(myStringafd)"
+        let temperature = self.forecastData[indexPath.row].temperature
+        cell.temperatureLabel.text = prepareDegreeLabel(from: temperature)
+        cell.forecastDescriptionLabel.text = dateFormater(for: self.forecastData[indexPath.row].time)
+        cell.backgroundColor = .clear
         return cell
     }
     
-//    private func dateFormater(
+    private func dateFormater(for date: Int) -> String {
+        let time = Date(timeIntervalSince1970: TimeInterval(date))
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let myString = formatter.string(from: time)
+        let yourDate = formatter.date(from: myString)
+        formatter.dateFormat = "dd-MMM-yyyy"
+        guard let date: Date = yourDate else { return "Date error."}
+        let myStringafd = formatter.string(from: date)
+        return myStringafd
+    }
     
+    private func prepareDegreeLabel(from: Double) -> String {
+        let celsi = convertToCelsius(fahrenheit: Int(from))
+        return celsi >= 0 ? "+\(celsi)C" : "\(celsi)C"
+    }
     
-    
+    private func convertToCelsius(fahrenheit: Int) -> Int {
+        return Int(5.0 / 9.0 * (Double(fahrenheit) - 32.0))
+    }
 
     /*
     // Override to support conditional editing of the table view.

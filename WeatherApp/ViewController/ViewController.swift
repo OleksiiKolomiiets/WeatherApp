@@ -21,8 +21,8 @@ class ViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        
-        updateWeatherForLocation(location: "Kiev")
+        cityNameLabel.text = "Kiev"
+        updateWeatherForLocation(location: cityNameLabel.text!)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -37,10 +37,12 @@ class ViewController: UIViewController, UISearchBarDelegate {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    Weather.forecast(withLocation: location.coordinate, completion: { (results:[Weather]?) in
-                        if let weatherData = results {
+                    Weather.forecast(withLocation: location.coordinate, completion: { (results:[Weather]?, currently: [CurrentWeather]?) in
+                        if let weatherData = results, let currentlyWeather = currently?.first {
+                            let degreesFormater = DegreesFormater(fahrenheit: currentlyWeather.temperature)
                             self.weeklyForecastTableViewController?.forecastData = weatherData
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.async {                                
+                                self.degreesValueLabel.text = degreesFormater.celsiFormat
                                 self.weeklyForecastTableViewController?.tableView.reloadData()
                             }
                         }
