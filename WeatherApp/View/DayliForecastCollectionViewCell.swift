@@ -10,4 +10,6 @@ import UIKit
 
 class DayliForecastCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var hourLable: UILabel!
+    @IBOutlet weak var hourTemperatureLable: UILabel!
 }

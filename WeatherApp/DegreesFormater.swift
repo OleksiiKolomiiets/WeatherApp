@@ -22,7 +22,7 @@ class DegreesFormater {
     
     private func prepareDegreeLabel(from: Double) -> String {
         let celsi = convertToCelsius(fahrenheit: Int(from))
-        return celsi >= 0 ? "+\(celsi)C" : "\(celsi)C"
+        return celsi >= 0 ? "+\(celsi)℃" : "\(celsi)℃"
     }
     
     private func convertToCelsius(fahrenheit: Int) -> Int {

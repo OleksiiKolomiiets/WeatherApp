@@ -43,7 +43,8 @@ class WeeklyForecastTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeeklyForecastCellIdentifier", for: indexPath) as? WeeklyTableViewCell else { return UITableViewCell() }
         let temperature = self.forecastData[indexPath.row].temperature
-        cell.temperatureLabel.text = prepareDegreeLabel(from: temperature)
+        let temperatureFormater = DegreesFormater(fahrenheit: temperature)
+        cell.temperatureLabel.text = temperatureFormater.celsiFormat
         cell.forecastDescriptionLabel.text = dateFormater(for: self.forecastData[indexPath.row].time)
         cell.backgroundColor = .clear
         return cell
@@ -59,15 +60,6 @@ class WeeklyForecastTableViewController: UITableViewController {
         guard let date: Date = yourDate else { return "Date error."}
         let myStringafd = formatter.string(from: date)
         return myStringafd
-    }
-    
-    private func prepareDegreeLabel(from: Double) -> String {
-        let celsi = convertToCelsius(fahrenheit: Int(from))
-        return celsi >= 0 ? "+\(celsi)C" : "\(celsi)C"
-    }
-    
-    private func convertToCelsius(fahrenheit: Int) -> Int {
-        return Int(5.0 / 9.0 * (Double(fahrenheit) - 32.0))
     }
 
     /*

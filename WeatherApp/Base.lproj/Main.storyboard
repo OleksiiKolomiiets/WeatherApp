@@ -47,20 +47,49 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hba-dd-RPy">
                                 <rect key="frame" x="0.0" y="339" width="375" height="78"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bgb-QO-drv">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a4l-Ol-fEK">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellCustom" id="HkI-w8-Gi1">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellCustom" id="HkI-w8-Gi1" customClass="DayliForecastCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="14" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="+12C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsD-rA-zjI">
+                                                    <rect key="frame" x="0.0" y="29" width="50" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFN-e1-Qws">
+                                                    <rect key="frame" x="0.0" y="3" width="50" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="0.39196702449999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="JsD-rA-zjI" firstAttribute="top" secondItem="dFN-e1-Qws" secondAttribute="bottom" constant="6" id="6pm-ae-fQh"/>
+                                            <constraint firstItem="JsD-rA-zjI" firstAttribute="leading" secondItem="HkI-w8-Gi1" secondAttribute="leading" id="CPj-sd-6Xa"/>
+                                            <constraint firstItem="dFN-e1-Qws" firstAttribute="top" secondItem="HkI-w8-Gi1" secondAttribute="top" constant="3" id="JA0-ug-jV1"/>
+                                            <constraint firstItem="dFN-e1-Qws" firstAttribute="leading" secondItem="HkI-w8-Gi1" secondAttribute="leading" id="KbD-rH-64W"/>
+                                            <constraint firstAttribute="bottom" secondItem="JsD-rA-zjI" secondAttribute="bottom" constant="3" id="cjs-pt-Y9K"/>
+                                            <constraint firstItem="JsD-rA-zjI" firstAttribute="top" secondItem="dFN-e1-Qws" secondAttribute="bottom" constant="6" id="lhS-1J-ZFF"/>
+                                            <constraint firstAttribute="trailing" secondItem="JsD-rA-zjI" secondAttribute="trailing" id="od8-uL-RWS"/>
+                                            <constraint firstAttribute="trailing" secondItem="dFN-e1-Qws" secondAttribute="trailing" id="xe5-Ys-7In"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="hourLable" destination="dFN-e1-Qws" id="Hjw-kV-GZG"/>
+                                            <outlet property="hourTemperatureLable" destination="JsD-rA-zjI" id="J8i-18-2Kv"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -96,6 +125,7 @@
                     </view>
                     <connections>
                         <outlet property="cityNameLabel" destination="8Q7-nt-lAD" id="5rb-O8-Y7T"/>
+                        <outlet property="containerViewForCollectionView" destination="hba-dd-RPy" id="Agt-uE-X2S"/>
                         <outlet property="degreesValueLabel" destination="Tc5-RI-FMJ" id="ODb-4U-ylL"/>
                         <outlet property="searchBar" destination="uLS-2p-4nX" id="6OW-hm-gGd"/>
                     </connections>
@@ -159,7 +189,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybV-jL-fiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="648"/>
+            <point key="canvasLocation" x="25" y="587"/>
         </scene>
     </scenes>
     <resources>
