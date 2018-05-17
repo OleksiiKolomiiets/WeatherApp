@@ -9,18 +9,18 @@
 import UIKit
 
 class WeeklyTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+   
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var forecastDescriptionLabel: UILabel!
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+}
+
+extension WeeklyTableViewCell: ConfigurableCellProtocol {
+    func configure(with structure: WeatherProtocol) {
+        let temperatureFormater = DegreesFormater(fahrenheit: structure.temperature)
+        self.temperatureLabel.text = temperatureFormater.resultString
+        
+        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: "dd-MMM-yyyy")
+        self.forecastDescriptionLabel.text = dateFormater.resultString
     }
-
 }

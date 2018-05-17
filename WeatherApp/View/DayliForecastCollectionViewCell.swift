@@ -13,3 +13,13 @@ class DayliForecastCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var hourLable: UILabel!
     @IBOutlet weak var hourTemperatureLable: UILabel!
 }
+
+extension DayliForecastCollectionViewCell: ConfigurableCellProtocol {
+    func configure(with structure: WeatherProtocol) {
+        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: "HH")
+        self.hourLable.text = dateFormater.resultString
+        
+        let degreesFormater = DegreesFormater(fahrenheit: structure.temperature)
+        self.hourTemperatureLable.text = degreesFormater.resultString
+    }
+}

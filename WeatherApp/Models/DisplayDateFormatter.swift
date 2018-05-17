@@ -26,9 +26,9 @@ class DisplayDateFormatter: FormatterProtocol {
         let formatter = DateFormatter()
         formatter.dateFormat = defaultPattern
         let myString = formatter.string(from: time)
-        let yourDate = formatter.date(from: myString)
+        let theDate = formatter.date(from: myString)
         formatter.dateFormat = pattern
-        guard let date: Date = yourDate else { return "Date error."}
+        guard let date: Date = theDate else { return "Date error."}
         let myStringafd = formatter.string(from: date)
         return myStringafd
     }

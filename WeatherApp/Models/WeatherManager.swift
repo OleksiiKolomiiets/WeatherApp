@@ -1,46 +1,27 @@
 //
-//  WeatherSearchManager.swift
+//  WeatherForecastGetter.swift
 //  WeatherApp
 //
-//  Created by Oleksii Kolomiiets on 5/15/18.
+//  Created by Oleksii Kolomiiets on 5/17/18.
 //  Copyright © 2018 Oleksii Kolomiiets. All rights reserved.
 //
 
 import Foundation
 import CoreLocation
 
-struct Weather {
-    let time: Int
-    let temperature: Double
-    
-    enum SerializationError:Error {
-        case missing(String)
-        case invalid(String, Any)
-    }
-    
-    
-    init(json:[String:Any]) throws {
-        guard let time = json["time"] as? Int else {throw SerializationError.missing("time is missing")}
-
-        guard let temperature = json["temperatureMax"] as? Double else {throw SerializationError.missing("temp is missing")}
-        
-        self.time = time
-        self.temperature = temperature
-        
-    }
-    
+class WeatherManager {
     static let apiKey = "eceac25e196ca1898edfbfeded3dec64"
     static let basePath = "https://api.darksky.net/forecast/\(apiKey)/"
     
-    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([Weather]?, ShortTimeWeather?, [ShortTimeWeather]?) -> ()) {
-        
+    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([LongTimeWeather]?, ShortTimeWeather?, [ShortTimeWeather]?) -> ()) {        
         let url = basePath + "\(location.latitude),\(location.longitude)"
         let request = URLRequest(url: URL(string: url)!)
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
-            var dailyForecast:[Weather] = []
+            var dailyForecast:[LongTimeWeather] = []
             var currentForecast: ShortTimeWeather?
             var hourlyForecast: [ShortTimeWeather] = []
+            let maximumAmountOfHourlyResults = 12
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],
@@ -50,13 +31,16 @@ struct Weather {
                         let hourlyData = hourlyForecasts["data"] as? [[String:Any]],
                         let currentForecasts = json["currently"] as? [String:Any] {
                         for dataPoint in dailyData {
-                            if let weatherObject = try? Weather(json: dataPoint) {
+                            if let weatherObject = try? LongTimeWeather(json: dataPoint) {
                                 dailyForecast.append(weatherObject)
                             }
                         }
+                        var count = 0
                         for dataPoint in hourlyData {
-                            if let weatherObject = try? ShortTimeWeather(json: dataPoint) {
+                            if let weatherObject = try? ShortTimeWeather(json: dataPoint),
+                                count <= maximumAmountOfHourlyResults {
                                 hourlyForecast.append(weatherObject)
+                                count += 1
                             }
                         }
                         if let weatherObject = try? ShortTimeWeather(json: currentForecasts) {
@@ -72,25 +56,3 @@ struct Weather {
         task.resume()
     }
 }
-
-struct ShortTimeWeather {
-    let time: Int
-    let temperature: Double
-    
-    enum SerializationError:Error {
-        case missing(String)
-        case invalid(String, Any)
-    }
-    
-    
-    init(json:[String:Any]) throws {
-        guard let time = json["time"] as? Int else {throw SerializationError.missing("time is missing")}
-        
-        guard let temperature = json["temperature"] as? Double else {throw SerializationError.missing("temperature is missing")}
-        
-        self.time = time
-        self.temperature = temperature
-        
-    }
-}
-

@@ -14,15 +14,15 @@ class ViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var containerViewForCollectionView: UICollectionView!
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-    var dayliForecastCollectionViewController: DayliForecastCollectionViewController?
     var hourlyForecastData = [ShortTimeWeather]() {
-        didSet {
+        didSet { 
             containerViewForCollectionView.reloadData()
+            self.view.layoutIfNeeded()
         }
     }
-    var numberOfItemsInSection = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    Weather.forecast(withLocation: location.coordinate, completion: { (results:[Weather]?, currently: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
+                    WeatherManager.forecast(withLocation: location.coordinate, completion: { (results:[LongTimeWeather]?, currently: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
                         if let weatherData = results, let currentlyWeather = currently, let hourly = hourlyForecast {
                             let degreesFormater = DegreesFormater(fahrenheit: currentlyWeather.temperature)
                             self.weeklyForecastTableViewController?.forecastData = weatherData
@@ -62,23 +62,11 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier, let segueIndetifier = SegueIndetifier(rawValue: identifier) {
+        if segue.identifier == "weekForecast" {
             let embededController = segue.destination
-            switch segueIndetifier {
-            case .dayliForecast:
-                self.dayliForecastCollectionViewController = embededController as? DayliForecastCollectionViewController
-            case .weekForecast:
-                self.weeklyForecastTableViewController = embededController as? WeeklyForecastTableViewController
-            }
+            self.weeklyForecastTableViewController = embededController as? WeeklyForecastTableViewController
         }
-    } 
-    @IBOutlet weak var containerViewForCollectionView: UICollectionView!
-}
-
-enum SegueIndetifier: String {
-    case dayliForecast, weekForecast
-    
-    
+    }
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
@@ -91,10 +79,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCustom", for: indexPath)
         guard let coustumCell = cell as? DayliForecastCollectionViewCell else { return cell }
         
-        let dateFormater = DisplayDateFormatter(date: hourlyForecastData[indexPath.row].time, datePattern: "HH")
-        coustumCell.hourLable.text = dateFormater.resultString
-        let degreesFormater = DegreesFormater(fahrenheit: hourlyForecastData[indexPath.row].temperature)
-        coustumCell.hourTemperatureLable.text = degreesFormater.resultString
+        coustumCell.configure(with: hourlyForecastData[indexPath.row])
+        
         return coustumCell
     }
 }
