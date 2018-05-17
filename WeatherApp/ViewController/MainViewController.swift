@@ -9,14 +9,30 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, UISearchBarDelegate {
+class MainViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
+//    @IBOutlet weak var hideSearchButton: UIButton!
+//    @IBOutlet weak var addNewCityButton: UIButton!
+//
+//    @IBAction func tappedButtonAddNewCity(_ sender: UIButton) {
+//        addNewCityButton.isHidden = true
+//        searchBar.isHidden = false
+//        hideSearchButton.isHidden = false
+//        self.view.layoutIfNeeded()
+//    }
+//    @IBAction func tappedButtonHideSearch(_ sender: UIButton) {
+//        addNewCityButton.isHidden = false
+//        searchBar.isHidden = true
+//        hideSearchButton.isHidden = true
+//        self.view.layoutIfNeeded()
+//    }
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
+    var cityName = "Kiev"
     var hourlyForecastData = [ShortTimeWeather]() {
         didSet { 
             containerViewForCollectionView.reloadData()
@@ -27,7 +43,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        cityNameLabel.text = "Kiev"
+        cityNameLabel.text = self.cityName
         updateWeatherForLocation(location: cityNameLabel.text!)
         containerViewForCollectionView.backgroundColor = .clear
     }
@@ -41,15 +57,17 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
     
     func updateWeatherForLocation (location:String) {
+        let locationString = location
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    WeatherManager.forecast(withLocation: location.coordinate, completion: { (results:[LongTimeWeather]?, currently: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
-                        if let weatherData = results, let currentlyWeather = currently, let hourly = hourlyForecast {
-                            let degreesFormater = DegreesFormater(fahrenheit: currentlyWeather.temperature)
-                            self.weeklyForecastTableViewController?.forecastData = weatherData
+                    WeatherManager.forecast(withLocation: location.coordinate, completion: { (dayliForecast:[LongTimeWeather]?, currentlyForecast: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
+                        if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
+                            let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
+                            self.weeklyForecastTableViewController?.forecastData = dayliForecastData
                             DispatchQueue.main.async {
-                                self.hourlyForecastData = hourly
+                                self.cityNameLabel.text = locationString
+                                self.hourlyForecastData = hourlyForecastData
                                 self.degreesValueLabel.text = degreesFormater.resultString
                                 self.view.layoutIfNeeded()
                                 self.weeklyForecastTableViewController?.tableView.reloadData()
@@ -69,7 +87,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hourlyForecastData.count

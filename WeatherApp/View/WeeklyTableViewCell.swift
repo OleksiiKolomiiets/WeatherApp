@@ -17,6 +17,7 @@ class WeeklyTableViewCell: UITableViewCell {
 
 extension WeeklyTableViewCell: ConfigurableCellProtocol {
     func configure(with structure: WeatherProtocol) {
+        
         let temperatureFormater = DegreesFormater(fahrenheit: structure.temperature)
         self.temperatureLabel.text = temperatureFormater.resultString
         

@@ -28,6 +28,7 @@ class WeeklyForecastTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeeklyForecastCellIdentifier", for: indexPath) as? WeeklyTableViewCell else { return UITableViewCell() }
         cell.configure(with: self.forecastData[indexPath.row])
+        tableView.separatorColor = .clear
         return cell
     }
 }
