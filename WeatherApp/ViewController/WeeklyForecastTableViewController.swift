@@ -44,22 +44,11 @@ class WeeklyForecastTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeeklyForecastCellIdentifier", for: indexPath) as? WeeklyTableViewCell else { return UITableViewCell() }
         let temperature = self.forecastData[indexPath.row].temperature
         let temperatureFormater = DegreesFormater(fahrenheit: temperature)
-        cell.temperatureLabel.text = temperatureFormater.celsiFormat
-        cell.forecastDescriptionLabel.text = dateFormater(for: self.forecastData[indexPath.row].time)
+        cell.temperatureLabel.text = temperatureFormater.resultString
+        let dateFormater = DisplayDateFormatter(date: self.forecastData[indexPath.row].time, datePattern: "dd-MMM-yyyy")
+        cell.forecastDescriptionLabel.text = dateFormater.resultString
         cell.backgroundColor = .clear
         return cell
-    }
-    
-    private func dateFormater(for date: Int) -> String {
-        let time = Date(timeIntervalSince1970: TimeInterval(date))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let myString = formatter.string(from: time)
-        let yourDate = formatter.date(from: myString)
-        formatter.dateFormat = "dd-MMM-yyyy"
-        guard let date: Date = yourDate else { return "Date error."}
-        let myStringafd = formatter.string(from: date)
-        return myStringafd
     }
 
     /*

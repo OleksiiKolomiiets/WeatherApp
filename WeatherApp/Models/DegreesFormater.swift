@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DegreesFormater {
+class DegreesFormater: FormatterProtocol {
     
     init(fahrenheit: Double) {
         self.fahrenheit = fahrenheit
@@ -16,7 +16,7 @@ class DegreesFormater {
     
     private var fahrenheit: Double
     
-    var celsiFormat: String {
+    var resultString: String {
         return prepareDegreeLabel(from: fahrenheit)
     }
     

@@ -11,6 +11,8 @@
 		F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */; };
 		F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */; };
 		F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */; };
+		F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */; };
+		F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040C20AD975100875B4A /* FormatterProtocol.swift */; };
 		F299352B20AACF530051AE8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299352A20AACF530051AE8E /* AppDelegate.swift */; };
 		F299352D20AACF530051AE8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299352C20AACF530051AE8E /* ViewController.swift */; };
 		F299353020AACF530051AE8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299352E20AACF530051AE8E /* Main.storyboard */; };
@@ -25,6 +27,8 @@
 		F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTableViewCell.swift; sourceTree = "<group>"; };
 		F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayliForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesFormater.swift; sourceTree = "<group>"; };
+		F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateFormatter.swift; sourceTree = "<group>"; };
+		F21D040C20AD975100875B4A /* FormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterProtocol.swift; sourceTree = "<group>"; };
 		F299352720AACF530051AE8E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F299352A20AACF530051AE8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F299352C20AACF530051AE8E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +61,24 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		F269F7EA20AD9F9B00A93743 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F21D040C20AD975100875B4A /* FormatterProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F269F7EB20AD9FA500A93743 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F299359920AB17C00051AE8E /* WeatherSearchManager.swift */,
+				F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */,
+				F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F299351E20AACF530051AE8E = {
 			isa = PBXGroup;
 			children = (
@@ -76,12 +98,10 @@
 		F299352920AACF530051AE8E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */,
+				F269F7EB20AD9FA500A93743 /* Models */,
+				F269F7EA20AD9F9B00A93743 /* Protocols */,
 				F20C611520AC5F4100710E00 /* ViewController */,
-				F299359920AB17C00051AE8E /* WeatherSearchManager.swift */,
 				F2FEFDDF20AC69B40080C47C /* View */,
-				F299352E20AACF530051AE8E /* Main.storyboard */,
-				F299353620AACF6C0051AE8E /* Info.plist */,
 				F299353C20AACFB50051AE8E /* Supporting Files */,
 			);
 			path = WeatherApp;
@@ -90,6 +110,8 @@
 		F299353C20AACFB50051AE8E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F299352E20AACF530051AE8E /* Main.storyboard */,
+				F299353620AACF6C0051AE8E /* Info.plist */,
 				F299352A20AACF530051AE8E /* AppDelegate.swift */,
 				F299353120AACF6C0051AE8E /* Assets.xcassets */,
 				F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */,
@@ -187,9 +209,11 @@
 				F299359A20AB17C00051AE8E /* WeatherSearchManager.swift in Sources */,
 				F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */,
 				F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */,
+				F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */,
 				F20C611420AC367A00710E00 /* DayliForecastCollectionViewController.swift in Sources */,
 				F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */,
 				F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */,
+				F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,7 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

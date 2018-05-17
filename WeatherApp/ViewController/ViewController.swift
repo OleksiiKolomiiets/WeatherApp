@@ -50,7 +50,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
                             self.weeklyForecastTableViewController?.forecastData = weatherData
                             DispatchQueue.main.async {
                                 self.hourlyForecastData = hourly
-                                self.degreesValueLabel.text = degreesFormater.celsiFormat
+                                self.degreesValueLabel.text = degreesFormater.resultString
                                 self.view.layoutIfNeeded()
                                 self.weeklyForecastTableViewController?.tableView.reloadData()
                             }
@@ -81,8 +81,7 @@ enum SegueIndetifier: String {
     
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.hourlyForecastData.count
@@ -91,22 +90,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCustom", for: indexPath)
         guard let coustumCell = cell as? DayliForecastCollectionViewCell else { return cell }
-//        cell.configureWith(temp: arrayTempHourly[indexPath.row], time: arrayTimeHourly[indexPath.row])
-        coustumCell.hourLable.text = dateFormater(for: hourlyForecastData[indexPath.row].time)
+        
+        let dateFormater = DisplayDateFormatter(date: hourlyForecastData[indexPath.row].time, datePattern: "HH")
+        coustumCell.hourLable.text = dateFormater.resultString
         let degreesFormater = DegreesFormater(fahrenheit: hourlyForecastData[indexPath.row].temperature)
-        coustumCell.hourTemperatureLable.text = degreesFormater.celsiFormat
+        coustumCell.hourTemperatureLable.text = degreesFormater.resultString
         return coustumCell
-    }
-    
-    private func dateFormater(for date: Int) -> String {
-        let time = Date(timeIntervalSince1970: TimeInterval(date))
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let myString = formatter.string(from: time)
-        let yourDate = formatter.date(from: myString)
-        formatter.dateFormat = "HH"
-        guard let date: Date = yourDate else { return "Date error."}
-        let myStringafd = formatter.string(from: date)
-        return myStringafd
     }
 }
