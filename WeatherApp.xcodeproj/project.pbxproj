@@ -12,6 +12,7 @@
 		F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */; };
 		F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */; };
 		F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040C20AD975100875B4A /* FormatterProtocol.swift */; };
+		F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */; };
 		F266F84220ADAB89003B4683 /* ConfigurableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84120ADAB89003B4683 /* ConfigurableCellProtocol.swift */; };
 		F266F84420ADB2F3003B4683 /* ShortTimeWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84320ADB2F3003B4683 /* ShortTimeWeather.swift */; };
 		F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84520ADB305003B4683 /* WeatherProtocol.swift */; };
@@ -31,6 +32,7 @@
 		F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesFormater.swift; sourceTree = "<group>"; };
 		F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateFormatter.swift; sourceTree = "<group>"; };
 		F21D040C20AD975100875B4A /* FormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterProtocol.swift; sourceTree = "<group>"; };
+		F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPagesViewController.swift; sourceTree = "<group>"; };
 		F266F84120ADAB89003B4683 /* ConfigurableCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableCellProtocol.swift; sourceTree = "<group>"; };
 		F266F84320ADB2F3003B4683 /* ShortTimeWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTimeWeather.swift; sourceTree = "<group>"; };
 		F266F84520ADB305003B4683 /* WeatherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherProtocol.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				F299352C20AACF530051AE8E /* MainViewController.swift */,
 				F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */,
+				F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			files = (
 				F266F84220ADAB89003B4683 /* ConfigurableCellProtocol.swift in Sources */,
 				F299352D20AACF530051AE8E /* MainViewController.swift in Sources */,
+				F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */,
 				F299352B20AACF530051AE8E /* AppDelegate.swift in Sources */,
 				F299359A20AB17C00051AE8E /* LongTimeWeather.swift in Sources */,
 				F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */,
@@ -370,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRN844KN9B;
 				INFOPLIST_FILE = "$(SRCROOT)/WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PRN844KN9B;
 				INFOPLIST_FILE = "$(SRCROOT)/WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

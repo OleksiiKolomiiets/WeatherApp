@@ -21,7 +21,7 @@ class WeatherManager {
             var dailyForecast:[LongTimeWeather] = []
             var currentForecast: ShortTimeWeather?
             var hourlyForecast: [ShortTimeWeather] = []
-            let maximumAmountOfHourlyResults = 12
+            let maximumAmountOfHourlyResults = 18
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],

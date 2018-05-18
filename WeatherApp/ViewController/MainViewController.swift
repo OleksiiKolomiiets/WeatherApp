@@ -15,21 +15,6 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
-//    @IBOutlet weak var hideSearchButton: UIButton!
-//    @IBOutlet weak var addNewCityButton: UIButton!
-//
-//    @IBAction func tappedButtonAddNewCity(_ sender: UIButton) {
-//        addNewCityButton.isHidden = true
-//        searchBar.isHidden = false
-//        hideSearchButton.isHidden = false
-//        self.view.layoutIfNeeded()
-//    }
-//    @IBAction func tappedButtonHideSearch(_ sender: UIButton) {
-//        addNewCityButton.isHidden = false
-//        searchBar.isHidden = true
-//        hideSearchButton.isHidden = true
-//        self.view.layoutIfNeeded()
-//    }
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     var cityName = "Kiev"
@@ -57,10 +42,11 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     }
     
     func updateWeatherForLocation (location:String) {
-        let locationString = location
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
+                let locationString = placemarks?.first?.name
                 if let location = placemarks?.first?.location {
+                    
                     WeatherManager.forecast(withLocation: location.coordinate, completion: { (dayliForecast:[LongTimeWeather]?, currentlyForecast: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
                         if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
                             let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
