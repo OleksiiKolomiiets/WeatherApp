@@ -8,16 +8,19 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class MainViewController: UIViewController, UISearchBarDelegate {
+class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
+    @IBOutlet weak var containerViewCollection: UIView!
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-    var cityName = "Kiev"
+    let locationManager = CLLocationManager()
+    var cityName = "Kiev" // TODO: geolocation city
     var hourlyForecastData = [ShortTimeWeather]() {
         didSet { 
             containerViewForCollectionView.reloadData()
@@ -29,8 +32,22 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         searchBar.delegate = self
         cityNameLabel.text = self.cityName
-        updateWeatherForLocation(location: cityNameLabel.text!)
+        
         containerViewForCollectionView.backgroundColor = .clear
+        updateWeatherForLocation(location: cityNameLabel.text!)
+        
+        
+        // get geocordinate
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        let geocordinate = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        
+        cityName = "Lviv"
+        
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -38,37 +55,77 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         if let locationString = searchBar.text, !locationString.isEmpty {
             updateWeatherForLocation(location: locationString)
         }
-        
     }
     
     func updateWeatherForLocation (location:String) {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
-                let locationString = placemarks?.first?.name
+                self.cityNameLabel.text = placemarks?.first?.locality
                 if let location = placemarks?.first?.location {
-                    
-                    WeatherManager.forecast(withLocation: location.coordinate, completion: { (dayliForecast:[LongTimeWeather]?, currentlyForecast: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
-                        if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
-                            let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
-                            self.weeklyForecastTableViewController?.forecastData = dayliForecastData
-                            DispatchQueue.main.async {
-                                self.cityNameLabel.text = locationString
-                                self.hourlyForecastData = hourlyForecastData
-                                self.degreesValueLabel.text = degreesFormater.resultString
-                                self.view.layoutIfNeeded()
-                                self.weeklyForecastTableViewController?.tableView.reloadData()
-                            }
-                        }
-                    })
+                    self.getDataFromApi(coordinate: location.coordinate)
                 }
             }
         }
+    }
+    
+    func getDataFromApi(coordinate: CLLocationCoordinate2D) {
+        WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[LongTimeWeather]?, currentlyForecast: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
+            if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
+                let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
+                self.weeklyForecastTableViewController?.forecastData = dayliForecastData
+                DispatchQueue.main.async {
+                    self.hourlyForecastData = hourlyForecastData
+                    self.degreesValueLabel.text = degreesFormater.resultString
+                    self.view.layoutIfNeeded()
+                    self.weeklyForecastTableViewController?.tableView.reloadData()
+                }
+            }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "weekForecast" {
             let embededController = segue.destination
             self.weeklyForecastTableViewController = embededController as? WeeklyForecastTableViewController
+        }
+    }
+    
+}
+
+extension UIView {
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable
+    var borderColor: UIColor? {
+        get {
+            if let color = layer.borderColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                layer.borderColor = color.cgColor
+            } else {
+                layer.borderColor = nil
+            }
         }
     }
 }
