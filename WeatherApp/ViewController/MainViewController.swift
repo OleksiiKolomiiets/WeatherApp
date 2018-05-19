@@ -42,14 +42,14 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
         locationManager.startUpdatingLocation()
         
         lookUpCurrentLocation { (placemark) in
-            self.cityName = (placemark?.locality)!
-            self.updateWeatherForLocation(location: (placemark?.locality)!)
+            guard let locality: String = placemark?.locality else { return }
+            self.cityName = locality
+            self.updateWeatherForLocation(location: locality)
         }
         
     }
     
-    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?)
-        -> Void ) {
+    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
         if let lastLocation = self.locationManager.location {
             let geocoder = CLGeocoder()
             geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
@@ -60,9 +60,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
                     completionHandler(nil)
                 }
             })
-        }
-        else {
-            // No location was available.
+        } else {
             completionHandler(nil)
         }
     }
