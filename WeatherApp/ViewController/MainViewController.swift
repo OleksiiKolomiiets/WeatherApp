@@ -20,34 +20,51 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     let locationManager = CLLocationManager()
-    var cityName = "Kiev" // TODO: geolocation city
     var hourlyForecastData = [ShortTimeWeather]() {
         didSet { 
             containerViewForCollectionView.reloadData()
             self.view.layoutIfNeeded()
         }
     }
+    var cityName: String = "" {
+        didSet {
+            self.cityNameLabel.text = self.cityName
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        cityNameLabel.text = self.cityName
         
-        containerViewForCollectionView.backgroundColor = .clear
-        updateWeatherForLocation(location: cityNameLabel.text!)
-        
-        
-        // get geocordinate
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        let geocordinate = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        lookUpCurrentLocation { (placemark) in
+            self.cityName = (placemark?.locality)!
+            self.updateWeatherForLocation(location: (placemark?.locality)!)
+        }
         
-        cityName = "Lviv"
-        
-        
+    }
+    
+    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?)
+        -> Void ) {
+        if let lastLocation = self.locationManager.location {
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
+                if error == nil {
+                    let firstLocation = placemarks?.first
+                    completionHandler(firstLocation)
+                } else {
+                    completionHandler(nil)
+                }
+            })
+        }
+        else {
+            // No location was available.
+            completionHandler(nil)
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
