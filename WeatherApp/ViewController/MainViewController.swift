@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
-
+     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -26,16 +26,13 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             self.view.layoutIfNeeded()
         }
     }
+    var cityPageName: String? 
     var cityName: String = "" {
         didSet {
             self.cityNameLabel.text = self.cityName
         }
     }
-    var pageTitles: [String] = [] {
-        didSet {
-            print(self.pageTitles)
-        }
-    }
+    var pageTitles: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +42,16 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
-        lookUpCurrentLocation { (placemark) in
-            guard let locality: String = placemark?.locality else { return }
-            self.cityName = locality
-            self.updateWeatherForLocation(location: locality)
+        print(self.cityPageName ?? "nil")
+        if self.cityPageName == nil {
+            self.lookUpCurrentLocation { (placemark) in
+                guard let locality: String = placemark?.locality else { return }
+                self.cityName = locality
+                self.updateWeatherForLocation(location: locality)
+            }
+        } else {           
+            self.updateWeatherForLocation(location: self.cityPageName!)
         }
-        
     }
     
     func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
@@ -78,10 +78,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     }
     
     func updateWeatherForLocation (location:String) {
-        pageTitles.append(location)
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
-            if error == nil {
-                self.cityNameLabel.text = placemarks?.first?.locality
+            if error == nil, let locality = placemarks?.first?.locality {
+                self.cityNameLabel.text = locality
+                self.pageTitles.append(locality)
+                print(self.pageTitles)
                 if let location = placemarks?.first?.location {
                     self.getDataFromApi(coordinate: location.coordinate)
                 }

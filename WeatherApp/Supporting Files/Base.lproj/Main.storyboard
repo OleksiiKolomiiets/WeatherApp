@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WuW-E4-vCQ">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeatherPage" id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,13 +168,71 @@
             </objects>
             <point key="canvasLocation" x="2195.625" y="28.52112676056338"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="veJ-y6-TdS">
+            <objects>
+                <viewController storyboardIdentifier="Page2" id="boB-BU-FW9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ndx-kX-q7b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzm-dw-GrM">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="2"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I0i-kQ-AZQ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1f1-zJ-yAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="523" y="-794"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mFk-ZZ-TR2">
+            <objects>
+                <viewController storyboardIdentifier="Page1" id="LbF-0I-UDg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y66-Tx-XMm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z41-Ai-Yhj">
+                                <rect key="frame" x="145" y="269" width="30" height="30"/>
+                                <state key="normal" title="1"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="47j-s9-OHK" firstAttribute="bottom" secondItem="Z41-Ai-Yhj" secondAttribute="bottom" constant="269" id="G66-9V-Ykd"/>
+                            <constraint firstItem="Z41-Ai-Yhj" firstAttribute="top" secondItem="47j-s9-OHK" secondAttribute="top" constant="249" id="GrE-Ye-VSv"/>
+                            <constraint firstItem="47j-s9-OHK" firstAttribute="trailing" secondItem="Z41-Ai-Yhj" secondAttribute="trailing" constant="145" id="Vw0-8d-pMg"/>
+                            <constraint firstItem="Z41-Ai-Yhj" firstAttribute="leading" secondItem="47j-s9-OHK" secondAttribute="leading" constant="145" id="fom-Ka-ZDx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="47j-s9-OHK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NLo-TC-Myf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="-785"/>
+        </scene>
         <!--Weather Pages View Controller-->
         <scene sceneID="dOy-H3-agI">
             <objects>
-                <pageViewController restorationIdentifier="PageVCSRestorationIdentifier" storyboardIdentifier="PageVCStoryboardIdentifier" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="WuW-E4-vCQ" customClass="WeatherPagesViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController restorationIdentifier="PageVCSRestorationIdentifier" storyboardIdentifier="PageVCStoryboardIdentifier" autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="WuW-E4-vCQ" customClass="WeatherPagesViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="nas-We-W5D"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="dataSource" destination="nas-We-W5D" id="rk2-Ld-p9D"/>
+                        <outlet property="delegate" destination="nas-We-W5D" id="YNj-1T-xCs"/>
+                    </connections>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B8O-sv-iqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="29"/>
+            <point key="canvasLocation" x="1416" y="29"/>
         </scene>
         <!--Weekly Forecast Table View Controller-->
         <scene sceneID="K2f-Ux-WMz">
