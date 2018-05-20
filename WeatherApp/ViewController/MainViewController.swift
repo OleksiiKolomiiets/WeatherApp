@@ -86,7 +86,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     func getDataFromApi(coordinate: CLLocationCoordinate2D) {
         WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[WeatherData]?, currentlyForecast: WeatherData?, hourlyForecast: [WeatherData]?) in
             if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
-                let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
+                let degreesFormater = CelsiusFormater(fahrenheit: currentlyForecastData.temperature)
                 self.weeklyForecastTableViewController?.forecastData = dayliForecastData
                 DispatchQueue.main.async {
                     self.hourlyForecastData = hourlyForecastData
@@ -136,11 +136,7 @@ extension UIView {
             return nil
         }
         set {
-            if let color = newValue {
-                layer.borderColor = color.cgColor
-            } else {
-                layer.borderColor = nil
-            }
+            layer.borderColor = newValue?.cgColor
         }
     }
 }

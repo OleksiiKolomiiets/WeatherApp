@@ -13,7 +13,7 @@ class WeatherManager {
     static let apiKey = "eceac25e196ca1898edfbfeded3dec64"
     static let basePath = "https://api.darksky.net/forecast/\(apiKey)/"
     
-    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([WeatherData]?, WeatherData?, [WeatherData]?) -> ()) {        
+    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([WeatherData], WeatherData?, [WeatherData]) -> ()) {        
         let url = basePath + "\(location.latitude),\(location.longitude)"
         let request = URLRequest(url: URL(string: url)!)
         

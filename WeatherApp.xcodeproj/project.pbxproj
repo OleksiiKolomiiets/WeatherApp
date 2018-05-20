@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */; };
 		F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */; };
-		F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */; };
+		F20EF07B20ACCCD900E009B6 /* CelsiusFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */; };
 		F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */; };
 		F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040C20AD975100875B4A /* FormatterProtocol.swift */; };
 		F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTableViewCell.swift; sourceTree = "<group>"; };
 		F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayliForecastCollectionViewCell.swift; sourceTree = "<group>"; };
-		F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesFormater.swift; sourceTree = "<group>"; };
+		F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelsiusFormater.swift; sourceTree = "<group>"; };
 		F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateFormatter.swift; sourceTree = "<group>"; };
 		F21D040C20AD975100875B4A /* FormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterProtocol.swift; sourceTree = "<group>"; };
 		F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPagesViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F26E117A20B16A17003FAE67 /* WeatherData.swift */,
-				F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */,
+				F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */,
 				F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */,
 				F266F84720ADB988003B4683 /* WeatherManager.swift */,
 			);
@@ -223,7 +223,7 @@
 				F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */,
 				F266F84820ADB988003B4683 /* WeatherManager.swift in Sources */,
 				F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */,
-				F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */,
+				F20EF07B20ACCCD900E009B6 /* CelsiusFormater.swift in Sources */,
 				F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */,
 				F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */,
 			);

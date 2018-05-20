@@ -12,24 +12,44 @@ class DisplayDateFormatter: FormatterProtocol {
     var resultString: String {
         return dateFormatter(for: self.date, pattern: self.datePattern)
     }
-    private var datePattern: String
+    private var datePattern: DatePattern
     private var date: Int
-    private let defaultPattern = "yyyy-MM-dd HH:mm:ss"
     
-    init(date: Int, datePattern: String) {
+    init(date: Int, datePattern: DatePattern) {
         self.date = date
         self.datePattern = datePattern
     }
     
-    private func dateFormatter(for date: Int, pattern: String) -> String {
-        let time = Date(timeIntervalSince1970: TimeInterval(date))
-        let formatter = DateFormatter()
-        formatter.dateFormat = defaultPattern
-        let myString = formatter.string(from: time)
-        let theDate = formatter.date(from: myString)
-        formatter.dateFormat = pattern
-        guard let date: Date = theDate else { return "Date error."}
-        let myStringafd = formatter.string(from: date)
-        return myStringafd
+    enum DatePattern {
+        case buDefault
+        case hours
+        case date
+        
+        var value: String {
+            switch self {
+            case .buDefault:
+                return "yyyy-MM-dd HH:mm:ss"
+            case .hours:
+                return "HH"
+            case .date:
+                return "dd-MMM-yyyy"
+            }
+        }
+    }
+    
+    private func dateFormatter(for date: Int, pattern: DatePattern) -> String {
+        let neededDate = Date(timeIntervalSince1970: TimeInterval(date))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DatePattern.buDefault.value
+        
+        let neededDateString = dateFormatter.string(from: neededDate)
+        let neededDateByPattern = dateFormatter.date(from: neededDateString)
+        dateFormatter.dateFormat = pattern.value
+        
+        guard let date: Date = neededDateByPattern else { return "Date error."}
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate
     }
 }
+
+

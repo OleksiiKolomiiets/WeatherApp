@@ -18,10 +18,10 @@ class WeeklyTableViewCell: UITableViewCell {
 extension WeeklyTableViewCell: ConfigurableCellProtocol {
     func configure(with structure: WeatherProtocol) {
         
-        let temperatureFormater = DegreesFormater(fahrenheit: structure.temperature)
+        let temperatureFormater = CelsiusFormater(fahrenheit: structure.temperature)
         self.temperatureLabel.text = temperatureFormater.resultString
         
-        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: "dd-MMM-yyyy")
+        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .date)
         self.forecastDescriptionLabel.text = dateFormater.resultString
     }
 }
