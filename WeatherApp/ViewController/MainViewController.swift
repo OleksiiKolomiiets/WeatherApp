@@ -20,7 +20,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     let locationManager = CLLocationManager()
-    var hourlyForecastData = [ShortTimeWeather]() {
+    var hourlyForecastData = [WeatherData]() {
         didSet { 
             containerViewForCollectionView.reloadData()
             self.view.layoutIfNeeded()
@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     }
     
     func getDataFromApi(coordinate: CLLocationCoordinate2D) {
-        WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[LongTimeWeather]?, currentlyForecast: ShortTimeWeather?, hourlyForecast: [ShortTimeWeather]?) in
+        WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[WeatherData]?, currentlyForecast: WeatherData?, hourlyForecast: [WeatherData]?) in
             if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
                 let degreesFormater = DegreesFormater(fahrenheit: currentlyForecastData.temperature)
                 self.weeklyForecastTableViewController?.forecastData = dayliForecastData

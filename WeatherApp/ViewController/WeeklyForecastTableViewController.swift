@@ -10,7 +10,7 @@ import UIKit
 
 class WeeklyForecastTableViewController: UITableViewController {
 
-    var forecastData = [LongTimeWeather]()
+    var forecastData = [WeatherData]()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

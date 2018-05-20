@@ -10,5 +10,6 @@ import Foundation
 
 protocol WeatherProtocol {
     var time: Int { get }
-    var temperature: Double { get }    
+    var temperature: Double { get }
+    var isShortTimeWeather: Bool { get set }
 }

@@ -14,16 +14,15 @@
 		F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040C20AD975100875B4A /* FormatterProtocol.swift */; };
 		F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */; };
 		F266F84220ADAB89003B4683 /* ConfigurableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84120ADAB89003B4683 /* ConfigurableCellProtocol.swift */; };
-		F266F84420ADB2F3003B4683 /* ShortTimeWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84320ADB2F3003B4683 /* ShortTimeWeather.swift */; };
 		F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84520ADB305003B4683 /* WeatherProtocol.swift */; };
 		F266F84820ADB988003B4683 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266F84720ADB988003B4683 /* WeatherManager.swift */; };
+		F26E117B20B16A17003FAE67 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26E117A20B16A17003FAE67 /* WeatherData.swift */; };
 		F299352B20AACF530051AE8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299352A20AACF530051AE8E /* AppDelegate.swift */; };
 		F299352D20AACF530051AE8E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299352C20AACF530051AE8E /* MainViewController.swift */; };
 		F299353020AACF530051AE8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299352E20AACF530051AE8E /* Main.storyboard */; };
 		F299353220AACF6C0051AE8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F299353120AACF6C0051AE8E /* Assets.xcassets */; };
 		F299353520AACF6C0051AE8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */; };
 		F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */; };
-		F299359A20AB17C00051AE8E /* LongTimeWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299359920AB17C00051AE8E /* LongTimeWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +33,9 @@
 		F21D040C20AD975100875B4A /* FormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterProtocol.swift; sourceTree = "<group>"; };
 		F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPagesViewController.swift; sourceTree = "<group>"; };
 		F266F84120ADAB89003B4683 /* ConfigurableCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableCellProtocol.swift; sourceTree = "<group>"; };
-		F266F84320ADB2F3003B4683 /* ShortTimeWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTimeWeather.swift; sourceTree = "<group>"; };
 		F266F84520ADB305003B4683 /* WeatherProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherProtocol.swift; sourceTree = "<group>"; };
 		F266F84720ADB988003B4683 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		F26E117A20B16A17003FAE67 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		F299352720AACF530051AE8E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F299352A20AACF530051AE8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F299352C20AACF530051AE8E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 		F299353420AACF6C0051AE8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F299353620AACF6C0051AE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastTableViewController.swift; sourceTree = "<group>"; };
-		F299359920AB17C00051AE8E /* LongTimeWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTimeWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +80,7 @@
 		F269F7EB20AD9FA500A93743 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F299359920AB17C00051AE8E /* LongTimeWeather.swift */,
-				F266F84320ADB2F3003B4683 /* ShortTimeWeather.swift */,
+				F26E117A20B16A17003FAE67 /* WeatherData.swift */,
 				F20EF07A20ACCCD900E009B6 /* DegreesFormater.swift */,
 				F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */,
 				F266F84720ADB988003B4683 /* WeatherManager.swift */,
@@ -217,10 +214,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F266F84220ADAB89003B4683 /* ConfigurableCellProtocol.swift in Sources */,
+				F26E117B20B16A17003FAE67 /* WeatherData.swift in Sources */,
 				F299352D20AACF530051AE8E /* MainViewController.swift in Sources */,
 				F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */,
 				F299352B20AACF530051AE8E /* AppDelegate.swift in Sources */,
-				F299359A20AB17C00051AE8E /* LongTimeWeather.swift in Sources */,
 				F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */,
 				F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */,
 				F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */,
@@ -229,7 +226,6 @@
 				F20EF07B20ACCCD900E009B6 /* DegreesFormater.swift in Sources */,
 				F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */,
 				F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */,
-				F266F84420ADB2F3003B4683 /* ShortTimeWeather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

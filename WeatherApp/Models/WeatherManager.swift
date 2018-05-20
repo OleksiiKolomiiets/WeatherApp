@@ -13,14 +13,14 @@ class WeatherManager {
     static let apiKey = "eceac25e196ca1898edfbfeded3dec64"
     static let basePath = "https://api.darksky.net/forecast/\(apiKey)/"
     
-    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([LongTimeWeather]?, ShortTimeWeather?, [ShortTimeWeather]?) -> ()) {        
+    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([WeatherData]?, WeatherData?, [WeatherData]?) -> ()) {        
         let url = basePath + "\(location.latitude),\(location.longitude)"
         let request = URLRequest(url: URL(string: url)!)
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
-            var dailyForecast:[LongTimeWeather] = []
-            var currentForecast: ShortTimeWeather?
-            var hourlyForecast: [ShortTimeWeather] = []
+            var dailyForecast:[WeatherData] = []
+            var currentForecast: WeatherData?
+            var hourlyForecast: [WeatherData] = []
             let maximumAmountOfHourlyResults = 18
             if let data = data {
                 do {
@@ -31,19 +31,19 @@ class WeatherManager {
                         let hourlyData = hourlyForecasts["data"] as? [[String:Any]],
                         let currentForecasts = json["currently"] as? [String:Any] {
                         for dataPoint in dailyData {
-                            if let weatherObject = try? LongTimeWeather(json: dataPoint) {
+                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: false ) {
                                 dailyForecast.append(weatherObject)
                             }
                         }
                         var count = 0
                         for dataPoint in hourlyData {
-                            if let weatherObject = try? ShortTimeWeather(json: dataPoint),
+                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: true),
                                 count <= maximumAmountOfHourlyResults {
                                 hourlyForecast.append(weatherObject)
                                 count += 1
                             }
                         }
-                        if let weatherObject = try? ShortTimeWeather(json: currentForecasts) {
+                        if let weatherObject = try? WeatherData(json: currentForecasts, isShortTimeWeather: true) {
                             currentForecast = weatherObject
                         }
                     }
