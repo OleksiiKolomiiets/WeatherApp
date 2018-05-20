@@ -31,6 +31,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             self.cityNameLabel.text = self.cityName
         }
     }
+    var pageTitles: [String] = [] {
+        didSet {
+            print(self.pageTitles)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +78,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     }
     
     func updateWeatherForLocation (location:String) {
+        pageTitles.append(location)
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 self.cityNameLabel.text = placemarks?.first?.locality

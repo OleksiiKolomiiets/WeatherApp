@@ -31,13 +31,13 @@ class CelsiusFormater: FormatterProtocol {
     }
     
     private func getCelsiusPattern(value: Int) -> CelsiusPattern {
-        return value < 0 ? CelsiusPattern.belowZero(value) : CelsiusPattern.aboveZer(value)
+        return value < 0 ? CelsiusPattern.belowZero(value) : CelsiusPattern.aboveZero(value)
     }
     
     enum CelsiusPattern {
         
         case belowZero(Int)
-        case aboveZer(Int)
+        case aboveZero(Int)
         
         var flag: String { return "℃" }
         
@@ -45,7 +45,7 @@ class CelsiusFormater: FormatterProtocol {
             switch self {
             case .belowZero(_):
                 return ""
-            case .aboveZer(_):
+            case .aboveZero(_):
                 return "+"
             }
         }
@@ -54,7 +54,7 @@ class CelsiusFormater: FormatterProtocol {
             switch self {
             case .belowZero(let value):
                 return "\(self.sign)\(value)\(self.flag)"
-            case .aboveZer(let value):
+            case .aboveZero(let value):
                 return "\(self.sign)\(value)\(self.flag)"
             }
         }
