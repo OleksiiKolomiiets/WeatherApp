@@ -23,6 +23,7 @@
 		F299353220AACF6C0051AE8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F299353120AACF6C0051AE8E /* Assets.xcassets */; };
 		F299353520AACF6C0051AE8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */; };
 		F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */; };
+		F2EB1B6E20B2E12400026A74 /* UpdateWetherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		F299353420AACF6C0051AE8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F299353620AACF6C0051AE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastTableViewController.swift; sourceTree = "<group>"; };
+		F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateWetherManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				F299352C20AACF530051AE8E /* MainViewController.swift */,
+				F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */,
 				F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */,
 				F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */,
 			);
@@ -226,6 +229,7 @@
 				F20EF07B20ACCCD900E009B6 /* CelsiusFormater.swift in Sources */,
 				F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */,
 				F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */,
+				F2EB1B6E20B2E12400026A74 /* UpdateWetherManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

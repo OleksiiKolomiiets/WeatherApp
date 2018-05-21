@@ -16,10 +16,40 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
-    @IBOutlet weak var containerViewCollection: UIView!
+    @IBOutlet weak var searchBarToggleButton: UIButton!
+    @IBOutlet weak var addCityButton: UIButton!
+    
+    @IBAction func sideBarToggle(_ sender: UIButton) {
+        isSearchBarShowing.toggle()
+    }
+    @IBAction func tappedAddCityButton(_ sender: UIButton) {
+        cities.append(self.searchedCity)
+        isSearchBarShowing.toggle()
+        searchBar.text = ""
+    }
+    
+    var cities: [String] = [] {
+        didSet {
+            print(self.cities)
+        }
+    }
+    var searchedCity: String = ""
+    
+    var isSearchBarShowing = false {
+        didSet {
+            if !isSearchBarShowing {
+                addCityButton.isHidden = true
+            }
+            searchBar.isHidden.toggle()
+            searchBarToggleButton.setTitle(isSearchBarShowing ? "cancel" : "search", for: .normal)
+        }
+    }
+    let locationManager = CLLocationManager()
+    let updateWetherManager = UpdateWetherManager()
+    
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-    let locationManager = CLLocationManager()
+    
     var hourlyForecastData = [WeatherData]() {
         didSet { 
             containerViewForCollectionView.reloadData()
@@ -37,6 +67,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        updateWetherManager.delegate = self
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -47,17 +78,17 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             self.lookUpCurrentLocation { (placemark) in
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
-                self.updateWeatherForLocation(location: locality)
+                self.updateWetherManager.location = locality
+                self.cities.append(locality)
             }
         } else {           
-            self.updateWeatherForLocation(location: self.cityPageName!)
+            self.updateWetherManager.location =  self.cityPageName!
         }
     }
     
-    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
+    private func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
         if let lastLocation = self.locationManager.location {
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
+            CLGeocoder().reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
                 if error == nil {
                     let firstLocation = placemarks?.first
                     completionHandler(firstLocation)
@@ -73,36 +104,10 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            updateWeatherForLocation(location: locationString)
+            self.updateWetherManager.location = locationString
+            self.addCityButton.isHidden = false
+            searchedCity = locationString
         }
-    }
-    
-    func updateWeatherForLocation (location:String) {
-        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
-            if error == nil, let locality = placemarks?.first?.locality {
-                self.cityNameLabel.text = locality
-                self.pageTitles.append(locality)
-                print(self.pageTitles)
-                if let location = placemarks?.first?.location {
-                    self.getDataFromApi(coordinate: location.coordinate)
-                }
-            }
-        }
-    }
-    
-    func getDataFromApi(coordinate: CLLocationCoordinate2D) {
-        WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[WeatherData]?, currentlyForecast: WeatherData?, hourlyForecast: [WeatherData]?) in
-            if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
-                let degreesFormater = CelsiusFormater(fahrenheit: currentlyForecastData.temperature)
-                self.weeklyForecastTableViewController?.forecastData = dayliForecastData
-                DispatchQueue.main.async {
-                    self.hourlyForecastData = hourlyForecastData
-                    self.degreesValueLabel.text = degreesFormater.resultString
-                    self.view.layoutIfNeeded()
-                    self.weeklyForecastTableViewController?.tableView.reloadData()
-                }
-            }
-        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -161,5 +166,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         coustumCell.configure(with: hourlyForecastData[indexPath.row])
         
         return coustumCell
+    }
+}
+
+extension Bool {
+    mutating func toggle() {
+        self = !self
     }
 }
