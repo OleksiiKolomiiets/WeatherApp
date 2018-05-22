@@ -22,17 +22,18 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     @IBAction func sideBarToggle(_ sender: UIButton) {
         isSearchBarShowing.toggle()
     }
+    
     @IBAction func tappedAddCityButton(_ sender: UIButton) {
-        self.pageViewController?.cityManager.cities.append(self.searchedCity)
-        
+        self.pageViewController?.cityManager.addCity(self.searchedCity)        
         isSearchBarShowing.toggle()
         searchBar.text = ""
     }
     
+    let locationManager = CLLocationManager()
+    let updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
-    
+    var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     var searchedCity: String = ""
-    
     var isSearchBarShowing = false {
         didSet {
             if !isSearchBarShowing {
@@ -42,11 +43,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             searchBarToggleButton.setTitle(isSearchBarShowing ? "cancel" : "search", for: .normal)
         }
     }
-    let locationManager = CLLocationManager()
-    let updateWetherManager = UpdateWetherManager()
-    
-    var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-    
+   
     var hourlyForecastData = [WeatherData]() {
         didSet { 
             containerViewForCollectionView.reloadData()
@@ -59,26 +56,27 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             self.cityNameLabel.text = self.cityName
         }
     }
-    var pageTitles: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         updateWetherManager.delegate = self
-        
+        locationUpdtae()         
+    }
+    
+    private func locationUpdtae() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        print(self.cityPageName ?? "nil")
         if self.cityPageName == nil {
             self.lookUpCurrentLocation { (placemark) in
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
                 self.updateWetherManager.location = locality
-                self.pageViewController?.cityManager.cities.append(locality)
+                self.pageViewController?.cityManager.addCity(locality)
             }
-        } else {           
+        } else {
             self.updateWetherManager.location =  self.cityPageName!
         }
     }

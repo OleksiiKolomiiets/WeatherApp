@@ -24,7 +24,6 @@ class UpdateWetherManager {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil, let locality = placemarks?.first?.locality {
                 strongDelegate.cityNameLabel.text = locality
-                strongDelegate.pageTitles.append(locality)
                 if let location = placemarks?.first?.location {
                     self.getDataFromApi(coordinate: location.coordinate)
                 }
