@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherPagesViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
+    var cityManager = CityManager()
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
@@ -46,12 +48,16 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = pages.index(of: pageContentViewController)!
     }
-   
-    fileprivate lazy var pages: [UIViewController] = {
+    var pagesF = [UIViewController]()
+    var pages: [UIViewController] {
         let identifier = "WeatherPage"
-        var pages = [self.getViewController(withIdentifier: identifier, locationString: nil)]       
-        return pages
-    }()
+        
+        for city in self.cityManager.cities {
+            pagesF.append(self.getViewController(withIdentifier: identifier, locationString: city))
+        }
+        cityManager.printCities()
+        return pagesF
+    }
     
     fileprivate func getViewController(withIdentifier identifier: String, locationString: String?) -> UIViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
@@ -62,6 +68,14 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WeatherPage")
+        guard let weatherViewController = viewController as? MainViewController else { return }
+        weatherViewController.pageViewController = self
+        
+        pagesF.append(self.getViewController(withIdentifier: "WeatherPage", locationString: nil))
+        pagesF.append(self.getViewController(withIdentifier: "WeatherPage", locationString: "Lviv"))
+        pagesF.append(self.getViewController(withIdentifier: "WeatherPage", locationString: "Kiev"))
+        
         self.delegate = self
         self.dataSource = self
         if let firstVC = pages.first {

@@ -23,16 +23,14 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
         isSearchBarShowing.toggle()
     }
     @IBAction func tappedAddCityButton(_ sender: UIButton) {
-        cities.append(self.searchedCity)
+        self.pageViewController?.cityManager.cities.append(self.searchedCity)
+        
         isSearchBarShowing.toggle()
         searchBar.text = ""
     }
     
-    var cities: [String] = [] {
-        didSet {
-            print(self.cities)
-        }
-    }
+    var pageViewController: WeatherPagesViewController?
+    
     var searchedCity: String = ""
     
     var isSearchBarShowing = false {
@@ -46,7 +44,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     }
     let locationManager = CLLocationManager()
     let updateWetherManager = UpdateWetherManager()
-    
     
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     
@@ -79,7 +76,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
                 self.updateWetherManager.location = locality
-                self.cities.append(locality)
+                self.pageViewController?.cityManager.cities.append(locality)
             }
         } else {           
             self.updateWetherManager.location =  self.cityPageName!

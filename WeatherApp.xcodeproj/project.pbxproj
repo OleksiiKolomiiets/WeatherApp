@@ -24,6 +24,7 @@
 		F299353520AACF6C0051AE8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */; };
 		F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */; };
 		F2EB1B6E20B2E12400026A74 /* UpdateWetherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */; };
+		F2EB1B7020B30CA800026A74 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1B6F20B30CA800026A74 /* CityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F299353620AACF6C0051AE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastTableViewController.swift; sourceTree = "<group>"; };
 		F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateWetherManager.swift; sourceTree = "<group>"; };
+		F2EB1B6F20B30CA800026A74 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */,
 				F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */,
 				F266F84720ADB988003B4683 /* WeatherManager.swift */,
+				F2EB1B6F20B30CA800026A74 /* CityManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				F266F84220ADAB89003B4683 /* ConfigurableCellProtocol.swift in Sources */,
 				F26E117B20B16A17003FAE67 /* WeatherData.swift in Sources */,
+				F2EB1B7020B30CA800026A74 /* CityManager.swift in Sources */,
 				F299352D20AACF530051AE8E /* MainViewController.swift in Sources */,
 				F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */,
 				F299352B20AACF530051AE8E /* AppDelegate.swift in Sources */,
