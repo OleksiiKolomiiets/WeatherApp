@@ -9,12 +9,17 @@
 import Foundation
 
 class CityManager {
-    var cities = [String]()
+    var cities = [String?]()
     var cityCount: Int {
         return self.cities.count
     }
+    var prevCountOfCities: Int = 0
     var last: String {
-        return self.cities[cities.count]
+        return self.cities[cities.count]!
+    }
+    var isStarting = true
+    var wasCityAdd: Bool {
+        return prevCountOfCities < cityCount
     }
     
     func isNotDuplicatedCity(_ newCity: String) -> Bool {

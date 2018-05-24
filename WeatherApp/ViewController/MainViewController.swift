@@ -10,39 +10,26 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
+class MainViewController: UIViewController, CLLocationManagerDelegate {
      
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
-    @IBOutlet weak var searchBarToggleButton: UIButton!
-    @IBOutlet weak var addCityButton: UIButton!
-    
-    @IBAction func sideBarToggle(_ sender: UIButton) {
-        isSearchBarShowing.toggle()
-    }
-    
-    @IBAction func tappedAddCityButton(_ sender: UIButton) {
-        self.pageViewController?.cityManager.addCity(self.searchedCity)        
-        isSearchBarShowing.toggle()
-        searchBar.text = ""
-    }
     
     let locationManager = CLLocationManager()
     let updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
     var searchedCity: String = ""
-    var isSearchBarShowing = false {
-        didSet {
-            if !isSearchBarShowing {
-                addCityButton.isHidden = true
-            }
-            searchBar.isHidden.toggle()
-            searchBarToggleButton.setTitle(isSearchBarShowing ? "cancel" : "search", for: .normal)
-        }
-    }
+//    var isSearchBarShowing = false {
+//        didSet {
+//            searchBar.becomeFirstResponder()
+//            if !isSearchBarShowing {
+//                searchBar.resignFirstResponder()
+//            }
+//            searchBar.isHidden.toggle()
+//        }
+//    }
    
     var hourlyForecastData = [WeatherData]() {
         didSet { 
@@ -59,7 +46,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         updateWetherManager.delegate = self
         locationUpdtae()         
     }
@@ -96,14 +82,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, CLLocationManag
         }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let locationString = searchBar.text, !locationString.isEmpty {
-            self.updateWetherManager.location = locationString
-            self.addCityButton.isHidden = false
-            searchedCity = locationString
-        }
-    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "weekForecast" {
