@@ -20,16 +20,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     let updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-    var searchedCity: String = ""
-//    var isSearchBarShowing = false {
-//        didSet {
-//            searchBar.becomeFirstResponder()
-//            if !isSearchBarShowing {
-//                searchBar.resignFirstResponder()
-//            }
-//            searchBar.isHidden.toggle()
-//        }
-//    }
    
     var hourlyForecastData = [WeatherData]() {
         didSet { 
@@ -81,8 +71,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             completionHandler(nil)
         }
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "weekForecast" {
@@ -140,11 +128,5 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         coustumCell.configure(with: hourlyForecastData[indexPath.row])
         
         return coustumCell
-    }
-}
-
-extension Bool {
-    mutating func toggle() {
-        self = !self
     }
 }

@@ -27,6 +27,7 @@
 		F299353220AACF6C0051AE8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F299353120AACF6C0051AE8E /* Assets.xcassets */; };
 		F299353520AACF6C0051AE8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F299353320AACF6C0051AE8E /* LaunchScreen.storyboard */; };
 		F299359820AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */; };
+		F2AAD8E020B7510600735041 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAD8DF20B7510600735041 /* SearchResultTableViewController.swift */; };
 		F2EB1B6E20B2E12400026A74 /* UpdateWetherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */; };
 		F2EB1B7020B30CA800026A74 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EB1B6F20B30CA800026A74 /* CityManager.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		F299353420AACF6C0051AE8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F299353620AACF6C0051AE8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastTableViewController.swift; sourceTree = "<group>"; };
+		F2AAD8DF20B7510600735041 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateWetherManager.swift; sourceTree = "<group>"; };
 		F2EB1B6F20B30CA800026A74 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 				F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */,
 				F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */,
 				F22A2E3820B6B80F001FBA9C /* SearchCityViewController.swift */,
+				F2AAD8DF20B7510600735041 /* SearchResultTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				F26E117B20B16A17003FAE67 /* WeatherData.swift in Sources */,
 				F206B31520B5EC3200B4D9E6 /* AddViewController.swift in Sources */,
 				F20A98E720B5859300BF7B82 /* TestViewController.swift in Sources */,
+				F2AAD8E020B7510600735041 /* SearchResultTableViewController.swift in Sources */,
 				F2EB1B7020B30CA800026A74 /* CityManager.swift in Sources */,
 				F299352D20AACF530051AE8E /* MainViewController.swift in Sources */,
 				F258FF3D20AECC5D00505125 /* WeatherPagesViewController.swift in Sources */,

@@ -313,13 +313,23 @@
                                     <action selector="tappedCancelButton:" destination="us8-pb-Q4m" eventType="touchUpInside" id="sOn-iv-P7d"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbG-dq-Y4s">
+                                <rect key="frame" x="25" y="76" width="225" height="492"/>
+                                <connections>
+                                    <segue destination="hyp-Uc-8EX" kind="embed" identifier="seachResultIdentifier" id="0JC-kk-qvX"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uok-XL-vaT" firstAttribute="height" secondItem="Okq-U3-dEw" secondAttribute="height" id="0s1-ve-Hgq"/>
                             <constraint firstItem="uok-XL-vaT" firstAttribute="top" secondItem="5k8-DZ-zGi" secondAttribute="top" id="E2J-kq-oWD"/>
+                            <constraint firstItem="5k8-DZ-zGi" firstAttribute="trailing" secondItem="zbG-dq-Y4s" secondAttribute="trailing" constant="70" id="Lq1-4L-BgI"/>
+                            <constraint firstItem="5k8-DZ-zGi" firstAttribute="bottom" secondItem="zbG-dq-Y4s" secondAttribute="bottom" id="O8C-DG-mnW"/>
                             <constraint firstItem="Okq-U3-dEw" firstAttribute="top" secondItem="5k8-DZ-zGi" secondAttribute="top" id="OJE-GZ-lH1"/>
                             <constraint firstItem="5k8-DZ-zGi" firstAttribute="trailing" secondItem="uok-XL-vaT" secondAttribute="trailing" constant="16" id="dbl-6X-2dW"/>
+                            <constraint firstItem="zbG-dq-Y4s" firstAttribute="top" secondItem="Okq-U3-dEw" secondAttribute="bottom" id="fRt-b9-71i"/>
+                            <constraint firstItem="zbG-dq-Y4s" firstAttribute="leading" secondItem="5k8-DZ-zGi" secondAttribute="leading" constant="25" id="fw3-cJ-hVT"/>
                             <constraint firstItem="uok-XL-vaT" firstAttribute="leading" secondItem="Okq-U3-dEw" secondAttribute="trailing" id="jqk-7p-Iew"/>
                             <constraint firstItem="Okq-U3-dEw" firstAttribute="leading" secondItem="5k8-DZ-zGi" secondAttribute="leading" constant="16" id="mPb-Fq-AwG"/>
                         </constraints>
@@ -333,7 +343,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p38-bt-KmF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4980" y="-149"/>
+            <point key="canvasLocation" x="4980" y="-150"/>
+        </scene>
+        <!--Search Result Table View Controller-->
+        <scene sceneID="0Gl-ii-Fol">
+            <objects>
+                <tableViewController id="hyp-Uc-8EX" customClass="SearchResultTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="25i-lB-qcl">
+                        <rect key="frame" x="0.0" y="0.0" width="225" height="492"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="searchResultCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" id="eSA-x7-XTe">
+                                <rect key="frame" x="0.0" y="28" width="225" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eSA-x7-XTe" id="VEr-1Q-VML">
+                                    <rect key="frame" x="0.0" y="0.0" width="225" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hyp-Uc-8EX" id="Yhb-1p-4UI"/>
+                            <outlet property="delegate" destination="hyp-Uc-8EX" id="RZD-Jx-uVi"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pS-v7-DoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5705" y="-149"/>
         </scene>
         <!--Weekly Forecast Table View Controller-->
         <scene sceneID="K2f-Ux-WMz">

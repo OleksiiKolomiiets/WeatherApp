@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class SearchCityViewController: UIViewController, UISearchBarDelegate {
 
     var delegate: WeatherPagesViewController?
+    var embededTableViewController: SearchResultTableViewController?
     @IBOutlet weak var searchBar: UISearchBar!
  
     @IBAction func tappedCancelButton(_ sender: UIButton) {
@@ -21,21 +24,42 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            guard let strongDelegate = delegate, let lastViewController = strongDelegate.orderdViewControllers.last else { return }
+            guard let strongDelegate = delegate else { return }
             strongDelegate.cityManager.addCity(locationString)
             strongDelegate.orderdViewControllers = strongDelegate.addPages()
-            print(strongDelegate.cityManager.cities)
             strongDelegate.setViewControllers([strongDelegate.orderdViewControllers.last!], direction: .forward, animated: true, completion: nil)
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        updateSearchResultsForSearchController(searchBarText: searchText)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seachResultIdentifier", let embededVC = segue.destination as? SearchResultTableViewController  {
+            embededTableViewController = embededVC
+        }
+    }
+    
+    func updateSearchResultsForSearchController(searchBarText: String) {
+        let request = MKLocalSearchRequest()
+        request.naturalLanguageQuery = searchBarText
+        let search = MKLocalSearch(request: request)
+        
+        search.start { response, _ in
+            guard let response = response, let embededVC = self.embededTableViewController else {
+                return
+            }
+            var result = [String]()
+            response.mapItems.forEach({ result.append($0.name!) })
+            embededVC.dataForCell = result
+            embededVC.tableView.reloadData()
+        }
     }
 }
