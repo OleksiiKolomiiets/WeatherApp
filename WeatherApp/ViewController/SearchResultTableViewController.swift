@@ -7,16 +7,14 @@
 //
 
 import UIKit
+import MapKit
 
 class SearchResultTableViewController: UITableViewController {
     
-    var dataForCell: [String] = []
-    
+    var dataForCell: [MKMapItem] = []
+    var delegate: SearchCityViewController?
     var countOfRow: Int {
         return dataForCell.count
-    }
-    private func getDataForCell(by index: Int) -> String {        
-        return dataForCell[index]
     }
 
     override func viewDidLoad() {
@@ -33,8 +31,14 @@ class SearchResultTableViewController: UITableViewController {
     }
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath)
-        cell.textLabel?.text = dataForCell[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
+        let data = SearchResultData(dataForCell[indexPath.row])
+        cell.configure(with: data)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let strongDelegate = delegate, let selectedCityName = dataForCell[indexPath.row].name else { return }
+        strongDelegate.backToRoot(with: selectedCityName)
     }
 }

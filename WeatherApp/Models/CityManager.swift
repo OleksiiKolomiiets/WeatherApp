@@ -37,11 +37,4 @@ class CityManager {
             
         }
     }
-    
-    
-    
-    
-    func printCities() {
-        print(self.cities)
-    }
 }

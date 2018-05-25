@@ -13,6 +13,8 @@
 		F20C611720AC602F00710E00 /* WeeklyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */; };
 		F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */; };
 		F20EF07B20ACCCD900E009B6 /* CelsiusFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */; };
+		F210370220B7F4BB005BF8B6 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210370120B7F4BB005BF8B6 /* SearchResultTableViewCell.swift */; };
+		F210370420B8079C005BF8B6 /* SearchResultStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F210370320B8079C005BF8B6 /* SearchResultStruct.swift */; };
 		F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */; };
 		F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21D040C20AD975100875B4A /* FormatterProtocol.swift */; };
 		F22A2E3920B6B80F001FBA9C /* SearchCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22A2E3820B6B80F001FBA9C /* SearchCityViewController.swift */; };
@@ -39,6 +41,8 @@
 		F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyTableViewCell.swift; sourceTree = "<group>"; };
 		F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayliForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		F20EF07A20ACCCD900E009B6 /* CelsiusFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelsiusFormater.swift; sourceTree = "<group>"; };
+		F210370120B7F4BB005BF8B6 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		F210370320B8079C005BF8B6 /* SearchResultStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultStruct.swift; sourceTree = "<group>"; };
 		F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDateFormatter.swift; sourceTree = "<group>"; };
 		F21D040C20AD975100875B4A /* FormatterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterProtocol.swift; sourceTree = "<group>"; };
 		F22A2E3820B6B80F001FBA9C /* SearchCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 				F21D040A20AD972300875B4A /* DisplayDateFormatter.swift */,
 				F266F84720ADB988003B4683 /* WeatherManager.swift */,
 				F2EB1B6F20B30CA800026A74 /* CityManager.swift */,
+				F210370320B8079C005BF8B6 /* SearchResultStruct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			children = (
 				F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */,
 				F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */,
+				F210370120B7F4BB005BF8B6 /* SearchResultTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,12 +262,14 @@
 				F21D040B20AD972300875B4A /* DisplayDateFormatter.swift in Sources */,
 				F266F84820ADB988003B4683 /* WeatherManager.swift in Sources */,
 				F20A98EA20B58AED00BF7B82 /* ReusableViewController.swift in Sources */,
+				F210370220B7F4BB005BF8B6 /* SearchResultTableViewCell.swift in Sources */,
 				F20C611920AC647200710E00 /* DayliForecastCollectionViewCell.swift in Sources */,
 				F22A2E3920B6B80F001FBA9C /* SearchCityViewController.swift in Sources */,
 				F20EF07B20ACCCD900E009B6 /* CelsiusFormater.swift in Sources */,
 				F21D040D20AD975100875B4A /* FormatterProtocol.swift in Sources */,
 				F266F84620ADB305003B4683 /* WeatherProtocol.swift in Sources */,
 				F2EB1B6E20B2E12400026A74 /* UpdateWetherManager.swift in Sources */,
+				F210370420B8079C005BF8B6 /* SearchResultStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
