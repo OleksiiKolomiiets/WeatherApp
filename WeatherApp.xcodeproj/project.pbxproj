@@ -87,17 +87,24 @@
 			path = playground;
 			sourceTree = "<group>";
 		};
-		F20C611520AC5F4100710E00 /* ViewController */ = {
+		F20C611520AC5F4100710E00 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F299352C20AACF530051AE8E /* MainViewController.swift */,
-				F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */,
 				F299359720AAFF6B0051AE8E /* WeeklyForecastTableViewController.swift */,
 				F258FF3C20AECC5D00505125 /* WeatherPagesViewController.swift */,
 				F22A2E3820B6B80F001FBA9C /* SearchCityViewController.swift */,
 				F2AAD8DF20B7510600735041 /* SearchResultTableViewController.swift */,
 			);
-			path = ViewController;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F210370720B8235B005BF8B6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F2EB1B6D20B2E12400026A74 /* UpdateWetherManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		F269F7EA20AD9F9B00A93743 /* Protocols */ = {
@@ -145,8 +152,9 @@
 			children = (
 				F269F7EA20AD9F9B00A93743 /* Protocols */,
 				F269F7EB20AD9FA500A93743 /* Models */,
-				F20C611520AC5F4100710E00 /* ViewController */,
-				F2FEFDDF20AC69B40080C47C /* View */,
+				F210370720B8235B005BF8B6 /* Managers */,
+				F20C611520AC5F4100710E00 /* ViewControllers */,
+				F2FEFDDF20AC69B40080C47C /* Views */,
 				F299353C20AACFB50051AE8E /* Supporting Files */,
 				F20A98E820B5859D00BF7B82 /* playground */,
 			);
@@ -165,14 +173,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F2FEFDDF20AC69B40080C47C /* View */ = {
+		F2FEFDDF20AC69B40080C47C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F20C611620AC602F00710E00 /* WeeklyTableViewCell.swift */,
 				F20C611820AC647200710E00 /* DayliForecastCollectionViewCell.swift */,
 				F210370120B7F4BB005BF8B6 /* SearchResultTableViewCell.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

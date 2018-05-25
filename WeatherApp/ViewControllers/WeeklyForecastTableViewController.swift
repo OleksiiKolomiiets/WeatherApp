@@ -11,6 +11,12 @@ import UIKit
 class WeeklyForecastTableViewController: UITableViewController {
 
     var forecastData = [WeatherData]()
+    var delegate: MainViewController?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.addSubview(self.coustumRefreshControl)
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -30,5 +36,22 @@ class WeeklyForecastTableViewController: UITableViewController {
         cell.configure(with: self.forecastData[indexPath.row])
         tableView.separatorColor = .clear
         return cell
+    }
+    
+    lazy var coustumRefreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(WeeklyForecastTableViewController.handleRefresh(_:)),
+            for: UIControlEvents.valueChanged
+        )
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        delegate?.locationUpdtae()
+        refreshControl.endRefreshing()
     }
 }

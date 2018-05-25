@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
-     
+    
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
@@ -37,10 +37,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWetherManager.delegate = self
-        locationUpdtae()         
-    }
+        locationUpdtae()
+    }   
     
-    private func locationUpdtae() {
+    func locationUpdtae() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
@@ -76,6 +76,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "weekForecast" {
             let embededController = segue.destination
             self.weeklyForecastTableViewController = embededController as? WeeklyForecastTableViewController
+            self.weeklyForecastTableViewController?.delegate = self
         }
     }
     

@@ -34,6 +34,7 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
     
     lazy var orderdViewControllers: [UIViewController] = {
         var pages = [self.getViewController(withLocationString: nil)]
+        
         for city in cityManager.cities {
             pages.append(self.getViewController(withLocationString: city))
         }
