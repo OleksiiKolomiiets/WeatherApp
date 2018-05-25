@@ -21,7 +21,7 @@ extension WeeklyTableViewCell: ConfigurableCellProtocol {
         let temperatureFormater = CelsiusFormater(fahrenheit: structure.temperature)
         self.temperatureLabel.text = temperatureFormater.resultString
         
-        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .date)
+        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .date, timeZone: structure.timeZone)
         self.forecastDescriptionLabel.text = dateFormater.resultString
     }
 }

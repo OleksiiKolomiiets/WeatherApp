@@ -16,7 +16,7 @@ class DayliForecastCollectionViewCell: UICollectionViewCell {
 
 extension DayliForecastCollectionViewCell: ConfigurableCellProtocol {
     func configure(with structure: WeatherProtocol) {
-        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .hours)
+        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .hours, timeZone: structure.timeZone)
         self.hourLable.text = dateFormater.resultString
         
         let degreesFormater = CelsiusFormater(fahrenheit: structure.temperature)

@@ -25,25 +25,26 @@ class WeatherManager {
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any],
+                        let timeZone = json["timezone"] as? String,
                         let dailyForecasts = json["daily"] as? [String:Any],
                         let dailyData = dailyForecasts["data"] as? [[String:Any]],
                         let hourlyForecasts = json["hourly"] as? [String:Any],
                         let hourlyData = hourlyForecasts["data"] as? [[String:Any]],
                         let currentForecasts = json["currently"] as? [String:Any] {
                         for dataPoint in dailyData {
-                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: false ) {
+                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: false, timeZone: timeZone) {
                                 dailyForecast.append(weatherObject)
                             }
                         }
                         var count = 0
                         for dataPoint in hourlyData {
-                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: true),
+                            if let weatherObject = try? WeatherData(json: dataPoint, isShortTimeWeather: true, timeZone: timeZone),
                                 count <= maximumAmountOfHourlyResults {
                                 hourlyForecast.append(weatherObject)
                                 count += 1
                             }
                         }
-                        if let weatherObject = try? WeatherData(json: currentForecasts, isShortTimeWeather: true) {
+                        if let weatherObject = try? WeatherData(json: currentForecasts, isShortTimeWeather: true, timeZone: timeZone) {
                             currentForecast = weatherObject
                         }
                     }

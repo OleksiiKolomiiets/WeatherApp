@@ -10,13 +10,15 @@ import Foundation
 
 class DisplayDateFormatter: FormatterProtocol {
     var resultString: String {
-        return dateFormatter(for: self.date, pattern: self.datePattern)
+        return dateFormatter(for: self.date, timeZone: self.timeZone, pattern: self.datePattern)
     }
     private var datePattern: DatePattern
     private var date: Int
+    private var timeZone: TimeZone
     
-    init(date: Int, datePattern: DatePattern) {
+    init(date: Int, datePattern: DatePattern, timeZone: TimeZone) {
         self.date = date
+        self.timeZone = timeZone
         self.datePattern = datePattern
     }
     
@@ -37,10 +39,11 @@ class DisplayDateFormatter: FormatterProtocol {
         }
     }
     
-    private func dateFormatter(for date: Int, pattern: DatePattern) -> String {
+    private func dateFormatter(for date: Int, timeZone: TimeZone, pattern: DatePattern) -> String {
         let neededDate = Date(timeIntervalSince1970: TimeInterval(date))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DatePattern.buDefault.value
+        dateFormatter.timeZone = timeZone
         
         let neededDateString = dateFormatter.string(from: neededDate)
         let neededDateByPattern = dateFormatter.date(from: neededDateString)
