@@ -11,14 +11,10 @@ import MapKit
 
 struct SearchResultData {
     var city: String
-    var country: String
-    var latitude: Double
-    var longitude: Double
+    var address: String
     
     init(_ data: MKMapItem) {
-        self.latitude = data.placemark.location?.coordinate.latitude ?? 0.00
-        self.longitude = data.placemark.location?.coordinate.longitude ?? 0.00
-        self.city = data.placemark.name ?? "City"
-        self.country = data.placemark.country ?? "Country"
-    }
+        self.city = data.placemark.name ?? ""
+        self.address = AddressFormater(data.placemark).resultString
+    } 
 }

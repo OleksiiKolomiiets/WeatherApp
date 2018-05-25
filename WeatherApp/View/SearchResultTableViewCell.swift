@@ -11,19 +11,15 @@ import CoreLocation
 
 class SearchResultTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLable: UILabel!
-    @IBOutlet weak var subtitleLable: UILabel!
-    @IBOutlet weak var longitudeLable: UILabel!
-    @IBOutlet weak var latitudeLable: UILabel!
+    @IBOutlet weak var cityLable: UILabel!
+    @IBOutlet weak var addressLable: UILabel!
     
 }
 
 extension SearchResultTableViewCell {
     func configure(with data: SearchResultData) {
-        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)        
-        self.titleLable.text = data.city
-        self.subtitleLable.text = data.country
-        self.longitudeLable.text = String(data.longitude)
-        self.latitudeLable.text =  String(data.latitude)
+        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+        self.cityLable.text = data.address
+        self.addressLable.text = data.address
     }
 }
