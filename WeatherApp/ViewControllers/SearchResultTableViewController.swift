@@ -19,7 +19,7 @@ class SearchResultTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.separatorColor = .clear
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

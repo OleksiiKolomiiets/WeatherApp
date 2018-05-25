@@ -33,12 +33,9 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
     }
     
     lazy var orderdViewControllers: [UIViewController] = {
-        var pages = [self.getViewController(withLocationString: nil)]
-        
-        for city in cityManager.cities {
-            pages.append(self.getViewController(withLocationString: city))
-        }
-        return pages
+        self.orderdViewControllers = []
+        let weatherVC = self
+        return cityManager.cities.map({ weatherVC.getViewController(withLocationString: $0) })
     }()
     
     func addPages() -> [UIViewController] {

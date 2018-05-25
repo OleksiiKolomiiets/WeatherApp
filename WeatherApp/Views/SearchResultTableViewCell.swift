@@ -18,7 +18,7 @@ class SearchResultTableViewCell: UITableViewCell {
 
 extension SearchResultTableViewCell {
     func configure(with data: SearchResultData) {
-        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.75)
         self.cityLable.text = data.address
         self.addressLable.text = data.address
     }

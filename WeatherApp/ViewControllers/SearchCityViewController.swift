@@ -41,7 +41,8 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
+        searchBar.delegate = self        
+        searchBar.becomeFirstResponder()
         guard let embededVC = self.embededTableViewController else { return }
         embededVC.delegate = self
     }

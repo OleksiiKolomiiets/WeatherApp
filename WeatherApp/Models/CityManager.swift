@@ -34,7 +34,7 @@ class CityManager {
     func addCity(_ city: String) {
         if isNotDuplicatedCity(city) {
             self.cities.append(city)
-            
+            print(self.cities)
         }
     }
 }
