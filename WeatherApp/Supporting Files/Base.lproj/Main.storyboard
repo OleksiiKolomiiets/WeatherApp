@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UbD-8O-jsJ">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -16,23 +12,23 @@
             <objects>
                 <viewController storyboardIdentifier="WeatherPage" id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="wGq-3M-stf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="B29-dI-uGL">
-                                <rect key="frame" x="0.0" y="20" width="320" height="249"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="249"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="+__℃" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="92" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-RI-FMJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="208.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="+__℃" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-RI-FMJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="208.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="75"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="____" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="83" translatesAutoresizingMaskIntoConstraints="NO" id="8Q7-nt-lAD">
-                                        <rect key="frame" x="0.0" y="216.5" width="320" height="32.5"/>
+                                        <rect key="frame" x="0.0" y="216.5" width="600" height="32.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -46,14 +42,14 @@
                                 </constraints>
                             </stackView>
                             <containerView contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="q2c-fK-5LG">
-                                <rect key="frame" x="0.0" y="333" width="320" height="235"/>
+                                <rect key="frame" x="0.0" y="333" width="600" height="267"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="ngK-9e-leX" kind="embed" identifier="weekForecast" id="hvE-oP-O7k"/>
                                 </connections>
                             </containerView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hba-dd-RPy">
-                                <rect key="frame" x="0.0" y="269" width="318" height="64"/>
+                                <rect key="frame" x="0.0" y="269" width="598" height="64"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="PVH-XG-XdC"/>
@@ -100,8 +96,8 @@
                                         </constraints>
                                         <size key="customSize" width="77" height="50"/>
                                         <connections>
-                                            <outlet property="hourLable" destination="dFN-e1-Qws" id="Hjw-kV-GZG"/>
-                                            <outlet property="hourTemperatureLable" destination="JsD-rA-zjI" id="J8i-18-2Kv"/>
+                                            <outlet property="hourLabel" destination="dFN-e1-Qws" id="Hjw-kV-GZG"/>
+                                            <outlet property="hourTemperatureLabel" destination="JsD-rA-zjI" id="J8i-18-2Kv"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -144,126 +140,6 @@
             </objects>
             <point key="canvasLocation" x="4007" y="-149"/>
         </scene>
-        <!--Test View Controller-->
-        <scene sceneID="G2T-zx-gJF">
-            <objects>
-                <pageViewController storyboardIdentifier="TestViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="mid" doubleSided="YES" id="3Ng-XH-4YW" customClass="TestViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems>
-                        <barButtonItem style="plain" id="DkD-Zt-q46">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dkd-60-G5u">
-                                <rect key="frame" x="16" y="7" width="288" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="tap:" destination="3Ng-XH-4YW" eventType="touchUpInside" id="lJD-aU-n35"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="WEq-dk-ot4"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wMf-ob-McB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1689.8550724637682" y="-1396.467391304348"/>
-        </scene>
-        <!--Reusable View Controller-->
-        <scene sceneID="Bcb-wI-cPG">
-            <objects>
-                <viewController storyboardIdentifier="blue" id="eqi-to-4Vq" customClass="ReusableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cvL-uA-bte">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="95Q-tt-rYL"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Iwb-gE-Ax2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2535" y="-1397"/>
-        </scene>
-        <!--Add View Controller-->
-        <scene sceneID="1nF-GQ-AR3">
-            <objects>
-                <viewController storyboardIdentifier="present" id="ita-YM-rtT" customClass="AddViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VnD-3Y-TbK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kBy-Hq-OUw">
-                                <rect key="frame" x="50" y="150" width="220" height="260"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="noY-PW-jQV">
-                                        <rect key="frame" x="0.0" y="0.0" width="220" height="36"/>
-                                        <color key="backgroundColor" red="0.91909176111221313" green="0.16450208425521851" blue="0.046870969235897064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="RED">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedColorButton:" destination="ita-YM-rtT" eventType="touchUpInside" id="pXB-h2-ylx"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPa-Q0-6Rb">
-                                        <rect key="frame" x="0.0" y="56" width="220" height="36"/>
-                                        <color key="backgroundColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="GREEN">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedColorButton:" destination="ita-YM-rtT" eventType="touchUpInside" id="9iN-lB-Tsa"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7r-zw-Kpk">
-                                        <rect key="frame" x="0.0" y="112" width="220" height="36"/>
-                                        <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="GREY">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedColorButton:" destination="ita-YM-rtT" eventType="touchUpInside" id="xOy-Ey-dE3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgQ-ua-ABg">
-                                        <rect key="frame" x="0.0" y="168" width="220" height="36"/>
-                                        <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="BLUE">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedColorButton:" destination="ita-YM-rtT" eventType="touchUpInside" id="7eQ-K4-raH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-8d-w1l">
-                                        <rect key="frame" x="0.0" y="224" width="220" height="36"/>
-                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="YELOW">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="tappedColorButton:" destination="ita-YM-rtT" eventType="touchUpInside" id="cL9-XH-fmZ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="kBy-Hq-OUw" firstAttribute="leading" secondItem="Ktb-dC-jnW" secondAttribute="leading" constant="50" id="GqC-z1-bby"/>
-                            <constraint firstItem="Ktb-dC-jnW" firstAttribute="trailing" secondItem="kBy-Hq-OUw" secondAttribute="trailing" constant="50" id="npX-XR-YWQ"/>
-                            <constraint firstItem="kBy-Hq-OUw" firstAttribute="top" secondItem="Ktb-dC-jnW" secondAttribute="top" constant="130" id="oh5-yD-qeP"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ktb-dC-jnW"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iUJ-xx-dGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3439" y="-1397"/>
-        </scene>
         <!--Weather Pages View Controller-->
         <scene sceneID="dOy-H3-agI">
             <objects>
@@ -271,7 +147,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems>
                         <barButtonItem style="plain" id="b8n-9P-VUk">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zeB-DK-LwL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zeB-DK-LwL">
                                 <rect key="frame" x="16" y="1.5" width="288" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,16 +172,16 @@
             <objects>
                 <viewController storyboardIdentifier="searchVCIdentifier" id="us8-pb-Q4m" customClass="SearchCityViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ut-E1-VD2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-U3-dEw">
-                                <rect key="frame" x="16" y="20" width="243" height="56"/>
+                                <rect key="frame" x="16" y="20" width="523" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uok-XL-vaT">
-                                <rect key="frame" x="259" y="20" width="45" height="56"/>
+                                <rect key="frame" x="539" y="20" width="45" height="56"/>
                                 <state key="normal" title="cancel">
                                     <color key="titleColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -314,7 +190,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbG-dq-Y4s">
-                                <rect key="frame" x="25" y="76" width="225" height="492"/>
+                                <rect key="frame" x="25" y="76" width="505" height="524"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="hyp-Uc-8EX" kind="embed" identifier="seachResultIdentifier" id="0JC-kk-qvX"/>
@@ -365,13 +241,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ie9-2L-Udy">
                                             <rect key="frame" x="16" y="0.0" width="193" height="54.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="oLw-LS-z6W">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLw-LS-z6W">
                                                     <rect key="frame" x="0.0" y="0.0" width="193" height="31.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="w3q-dq-Tud">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3q-dq-Tud">
                                                     <rect key="frame" x="0.0" y="34.5" width="193" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -391,8 +267,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="addressLable" destination="w3q-dq-Tud" id="Czm-UJ-3U5"/>
-                                    <outlet property="cityLable" destination="oLw-LS-z6W" id="f0Y-Jd-MNN"/>
+                                    <outlet property="addressLabel" destination="w3q-dq-Tud" id="Czm-UJ-3U5"/>
+                                    <outlet property="cityLabel" destination="oLw-LS-z6W" id="f0Y-Jd-MNN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -470,27 +346,6 @@
             <point key="canvasLocation" x="4004" y="466"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="obW-il-Hgk">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" toolbarHidden="NO" id="4RU-2P-iDW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jkh-bc-50p">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="3Ng-XH-4YW" kind="relationship" relationship="rootViewController" id="Py6-mW-tmN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ien-NT-Ghb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="782.60869565217399" y="-1396.467391304348"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="Kvs-Rs-Xz6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" toolbarHidden="NO" id="UbD-8O-jsJ" sceneMemberID="viewController">
@@ -502,6 +357,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5lM-8J-Z09">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

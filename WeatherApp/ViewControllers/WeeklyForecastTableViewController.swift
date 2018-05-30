@@ -51,7 +51,7 @@ class WeeklyForecastTableViewController: UITableViewController {
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        delegate?.locationUpdtae()
+        delegate?.locationUpdate()
         refreshControl.endRefreshing()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DateFormater.swift
+//  DateManager.swift
 //  WeatherApp
 //
 //  Created by Oleksii Kolomiiets on 5/17/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DateFormatter: FormatterProtocol {
+class DateManager: FormatterProtocol {
     var resultString: String {
         return dateFormatter(for: self.date, timeZone: self.timeZone, pattern: self.datePattern)
     }

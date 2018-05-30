@@ -9,7 +9,7 @@
 import Foundation
 
 class CityManager {
-    var cities = [String?]()
+    var cities: [String?] = [nil]
     var cityCount: Int {
         return self.cities.count
     }
@@ -34,6 +34,13 @@ class CityManager {
     func addCity(_ city: String) {
         if isNotDuplicatedCity(city) {
             self.cities.append(city)
+            print(self.cities)
+        }
+    }
+    
+    func addCurretnLocationCity(_ city: String) {
+        if isNotDuplicatedCity(city) {
+            self.cities[0] = city
             print(self.cities)
         }
     }

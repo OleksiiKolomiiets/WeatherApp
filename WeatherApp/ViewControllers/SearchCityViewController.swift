@@ -20,19 +20,12 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate {
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let locationString = searchBar.text, !locationString.isEmpty {
-            backToRoot(with: locationString)
-        }
-    }
-    
     func backToRoot(with searchResults: String) {
         guard let strongDelegate = delegate else { return }
         strongDelegate.cityManager.addCity(searchResults)
-        strongDelegate.orderdViewControllers = strongDelegate.addPages()
+        
         strongDelegate.setViewControllers([strongDelegate.orderdViewControllers.last!], direction: .forward, animated: true, completion: nil)
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

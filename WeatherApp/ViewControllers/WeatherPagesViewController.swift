@@ -11,6 +11,8 @@ import UIKit
 class WeatherPagesViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     let IDENTIFIER = "WeatherPage"
+    var cityManager = CityManager()
+    let pages = PagesManager()
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderdViewControllers.index(of: viewController) else { return nil }
@@ -32,40 +34,35 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    lazy var orderdViewControllers: [UIViewController] = {
-        self.orderdViewControllers = []
+    var orderdViewControllers: [UIViewController] {
         let weatherVC = self
         return cityManager.cities.map({ weatherVC.getViewController(withLocationString: $0) })
-    }()
-    
-    func addPages() -> [UIViewController] {
-        let data = self.cityManager
-        if cityManager.isStarting || cityManager.wasCityAdd {
-            cityManager.isStarting = false
-            cityManager.prevCountOfCities = cityManager.cityCount
-            for index in 0..<data.cityCount {
-                orderdViewControllers.append(self.getViewController(withLocationString: data.cities[index]))
-            }
-        }
-        return orderdViewControllers
     }
     
     fileprivate func getViewController(withLocationString locationString: String?) -> UIViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IDENTIFIER)
-        guard let weatherViewController = viewController as? MainViewController else { return viewController }
+        guard let weatherViewController = viewController as? MainViewController else { return viewController as! MainViewController }
         weatherViewController.pageViewController = self
         weatherViewController.cityPageName = locationString
         return weatherViewController
     }
-    
-    var cityManager = CityManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
         if let firstVC = orderdViewControllers.first {
-            setViewControllers([firstVC], direction: .reverse, animated: true, completion: nil)
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+    }
+    
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return 3
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.dataSource = nil;
+        self.dataSource = self;
     }
 }

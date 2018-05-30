@@ -10,16 +10,16 @@ import UIKit
 
 class DayliForecastCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var hourLable: UILabel!
-    @IBOutlet weak var hourTemperatureLable: UILabel!
+    @IBOutlet weak var hourLabel: UILabel!
+    @IBOutlet weak var hourTemperatureLabel: UILabel!
 }
 
 extension DayliForecastCollectionViewCell: ConfigurableCellProtocol {
     func configure(with structure: WeatherProtocol) {
-        let dateFormater = DisplayDateFormatter(date: structure.time, datePattern: .hours, timeZone: structure.timeZone)
-        self.hourLable.text = dateFormater.resultString
+        let dateFormater = DateManager(date: structure.time, datePattern: .hours, timeZone: structure.timeZone)
+        self.hourLabel.text = dateFormater.resultString
         
         let degreesFormater = CelsiusFormater(fahrenheit: structure.temperature)
-        self.hourTemperatureLable.text = degreesFormater.resultString
+        self.hourTemperatureLabel.text = degreesFormater.resultString
     }
 }

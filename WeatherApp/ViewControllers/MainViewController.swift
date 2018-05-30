@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import MapKit
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -17,7 +16,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
     
     let locationManager = CLLocationManager()
-    let updateWetherManager = UpdateWetherManager()
+    var updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
    
@@ -37,12 +36,13 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWetherManager.delegate = self
-        locationUpdtae()
-    }   
+        locationUpdate()
+    }
     
-    func locationUpdtae() {
+    func locationUpdate() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         if self.cityPageName == nil {
@@ -50,10 +50,31 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
                 self.updateWetherManager.location = locality
-                self.pageViewController?.cityManager.addCity(locality)
+                self.pageViewController?.cityManager.addCurretnLocationCity(locality)
             }
         } else {
             self.updateWetherManager.location =  self.cityPageName!
+        }
+    }
+    
+    private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("notDetermined")
+            manager.requestWhenInUseAuthorization()
+            break
+        case .authorizedWhenInUse, .authorizedAlways:
+            print("authorized")
+            manager.startUpdatingLocation()
+            break
+        case .restricted:
+            print("restricted")
+            // If restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .denied:
+            print("denied")
+            // If user denied your app access to Location Services, but can grant access from Settings.app
+            break
         }
     }
     
@@ -125,9 +146,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCustom", for: indexPath)
         guard let coustumCell = cell as? DayliForecastCollectionViewCell else { return cell }
-        
         coustumCell.configure(with: hourlyForecastData[indexPath.row])
-        
         return coustumCell
     }
 }
