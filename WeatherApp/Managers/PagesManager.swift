@@ -11,8 +11,30 @@ import CoreLocation
 import UIKit
 
 class PagesManager {
-    var orderdViewControllers = [UIViewController]()
     
+    init() {
+        addFakeCities()
+    }
+    
+    let IDENTIFIER = "WeatherPage"
+    var cityManager = CityModel()    
+    lazy var orderdViewControllers: [UIViewController] = {
+        return updatePagesIfNeeded(from: cityManager)
+    }()
+    var previousNumberOfCities = 0
+    private func updatePagesIfNeeded(from model: CityModel) -> [UIViewController] {
+        let pagesManager = self
+        previousNumberOfCities = cityManager.cityCount
+        return model.cities.map({ pagesManager.getViewController(withLocationString: $0) })
+    }
+    
+    private func addFakeCities() {
+        cityManager.addCity("kiev")
+        cityManager.addCity("lviv")
+        cityManager.addCity("Toronto")
+        cityManager.addCity("Tokyo")
+        cityManager.addCity("Los Angales")
+    }
     
 //    func addPages() -> [UIViewController] {
 //        let weatherVC = self
@@ -20,11 +42,11 @@ class PagesManager {
 //        return array
 //    }
     
-//    fileprivate func getViewController(withLocationString locationString: String?) -> UIViewController {
-//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IDENTIFIER)
-//        guard let weatherViewController = viewController as? MainViewController else { return viewController as! MainViewController }
+    fileprivate func getViewController(withLocationString locationString: String?) -> UIViewController {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IDENTIFIER)
+        guard let weatherViewController = viewController as? MainViewController else { return viewController as! MainViewController }
 //        weatherViewController.pageViewController = self
 //        weatherViewController.cityPageName = locationString
-//        return weatherViewController
-//    }
+        return weatherViewController
+    }
 }

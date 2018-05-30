@@ -10,7 +10,7 @@ import Foundation
 
 class DateManager: FormatterProtocol {
     var resultString: String {
-        return dateFormatter(for: self.date, timeZone: self.timeZone, pattern: self.datePattern)
+        return getString(from: self.date, timeZone: self.timeZone, pattern: self.datePattern)
     }
     private var datePattern: DatePattern
     private var date: Int
@@ -39,7 +39,7 @@ class DateManager: FormatterProtocol {
         }
     }
     
-    private func dateFormatter(for date: Int, timeZone: TimeZone, pattern: DatePattern) -> String {
+    private func getString(from date: Int, timeZone: TimeZone, pattern: DatePattern) -> String {
         let neededDate = Date(timeIntervalSince1970: TimeInterval(date))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DatePattern.byDefault.value

@@ -34,14 +34,11 @@ class UpdateWetherManager {
     private func getDataFromApi(coordinate: CLLocationCoordinate2D) {
         guard let strongDelegate = delegate else { return }
         WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[WeatherData]?, currentlyForecast: WeatherData?, hourlyForecast: [WeatherData]?) in
-            if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
-                let degreesFormater = CelsiusManager(fahrenheit: currentlyForecastData.temperature)
-                strongDelegate.weeklyForecastTableViewController?.forecastData = dayliForecastData
-                DispatchQueue.main.async {
+            if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast, let formattedDate = CelsiusManager(fahrenheit: currentlyForecastData.temperature)?.resultString {                
+                DispatchQueue.main.async {                    
+                    strongDelegate.weeklyForecastTableViewController?.forecastData = dayliForecastData
                     strongDelegate.hourlyForecastData = hourlyForecastData
-                    strongDelegate.degreesValueLabel.text = degreesFormater?.resultString
-                    strongDelegate.view.layoutIfNeeded()
-                    strongDelegate.weeklyForecastTableViewController?.tableView.reloadData()
+                    strongDelegate.updateUI(currentDegree: formattedDate)
                 }
             }
         })

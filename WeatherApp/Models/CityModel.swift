@@ -9,14 +9,13 @@
 import Foundation
 
 class CityModel {
-    var cities: [String?] = [nil]
+//    var cities: [String?] = [nil]
+    var cities: Set<String?> = [nil]
     var cityCount: Int {
         return self.cities.count
     }
     var prevCountOfCities: Int = 0
-    var last: String {
-        return self.cities[cities.count]!
-    }
+    
     var isStarting = true
     var wasCityAdd: Bool {
         return prevCountOfCities < cityCount
@@ -33,15 +32,21 @@ class CityModel {
     
     func addCity(_ city: String) {
         if isNotDuplicatedCity(city) {
-            self.cities.append(city)
+            self.cities.insert(city)
             print(self.cities)
         }
     }
-    
-    func addCurretnLocationCity(_ city: String) {
-        if isNotDuplicatedCity(city) {
-            self.cities[0] = city
-            print(self.cities)
-        }
+
+//    func addCurretnLocationCity(_ city: String) {
+//        if isNotDuplicatedCity(city) {
+//            self.cities[0] = city
+//            print(self.cities)
+//        }
+//    }
+}
+
+extension Optional: Hashable where Wrapped: Hashable {
+    public var hashValue: Int {
+        return self?.hashValue ?? 0
     }
 }

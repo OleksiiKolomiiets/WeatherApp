@@ -19,11 +19,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     var updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
-   
+    var weeklyForecastData = [WeatherData]()
     var hourlyForecastData = [WeatherData]() {
-        didSet { 
+        didSet {
             containerViewForCollectionView.reloadData()
-            self.view.layoutIfNeeded()
         }
     }
     var cityPageName: String? 
@@ -50,11 +49,12 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
                 self.updateWetherManager.location = locality
-                self.pageViewController?.cityManager.addCurretnLocationCity(locality)
+                self.pageViewController?.cityManager.addCity(locality)
             }
         } else {
             self.updateWetherManager.location =  self.cityPageName!
-        }
+        }        
+        self.containerViewForCollectionView.reloadData()
     }
     
     private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -93,14 +93,19 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func updateUI(currentDegree: String) {
+        self.degreesValueLabel.text = currentDegree
+        self.view.layoutIfNeeded()
+        self.weeklyForecastTableViewController?.tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "weekForecast" {
             let embededController = segue.destination
             self.weeklyForecastTableViewController = embededController as? WeeklyForecastTableViewController
-            self.weeklyForecastTableViewController?.delegate = self
+            self.weeklyForecastTableViewController?.delegate = self            
         }
-    }
-    
+    }    
 }
 
 extension UIView {

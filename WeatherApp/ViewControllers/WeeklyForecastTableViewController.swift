@@ -15,7 +15,7 @@ class WeeklyForecastTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.addSubview(self.coustumRefreshControl)
+        self.tableView.addSubview(self.costumRefreshControl)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -26,11 +26,6 @@ class WeeklyForecastTableViewController: UITableViewController {
         return forecastData.count
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeeklyForecastCellIdentifier", for: indexPath) as? WeeklyTableViewCell else { return UITableViewCell() }
         cell.configure(with: self.forecastData[indexPath.row])
@@ -38,7 +33,7 @@ class WeeklyForecastTableViewController: UITableViewController {
         return cell
     }
     
-    lazy var coustumRefreshControl: UIRefreshControl = {
+    lazy var costumRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
             self,

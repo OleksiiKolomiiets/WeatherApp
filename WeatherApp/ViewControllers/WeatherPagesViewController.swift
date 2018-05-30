@@ -34,10 +34,10 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    var orderdViewControllers: [UIViewController] {
+    lazy var orderdViewControllers: [UIViewController] = {
         let weatherVC = self
         return cityManager.cities.map({ weatherVC.getViewController(withLocationString: $0) })
-    }
+    }()
     
     fileprivate func getViewController(withLocationString locationString: String?) -> UIViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IDENTIFIER)
@@ -60,9 +60,9 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
         return 3
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        self.dataSource = nil;
-        self.dataSource = self;
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        self.dataSource = nil;
+//        self.dataSource = self;
+//    }
 }
