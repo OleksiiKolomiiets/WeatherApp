@@ -8,23 +8,22 @@
 
 import Foundation
 
-class CelsiusFormater: FormatterProtocol {
+class CelsiusManager: FormatterProtocol {
+    
+    init? (fahrenheit: Double) {
+        self.fahrenheit = fahrenheit
+    }
     
     var resultString: String {
         return self.celsiusPattern.string
     }
-    
-    init(fahrenheit: Double) {
-        self.fahrenheit = fahrenheit
-    }
-    
     private var fahrenheit: Double
     private var celsius: Int {
         return convertToCelsius(fahrenheit: self.fahrenheit)
     }
     private var celsiusPattern: CelsiusPattern {
         return getCelsiusPattern(value: self.celsius)
-    }    
+    }
     
     private func convertToCelsius(fahrenheit: Double) -> Int {
         return Int(5.0 / 9.0 * (fahrenheit - 32.0))

@@ -11,7 +11,7 @@ import UIKit
 class WeatherPagesViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     let IDENTIFIER = "WeatherPage"
-    var cityManager = CityManager()
+    var cityManager = CityModel()
     let pages = PagesManager()
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {

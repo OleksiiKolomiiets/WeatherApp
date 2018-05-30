@@ -35,11 +35,11 @@ class UpdateWetherManager {
         guard let strongDelegate = delegate else { return }
         WeatherManager.forecast(withLocation: coordinate, completion: { (dayliForecast:[WeatherData]?, currentlyForecast: WeatherData?, hourlyForecast: [WeatherData]?) in
             if let dayliForecastData = dayliForecast, let currentlyForecastData = currentlyForecast, let hourlyForecastData = hourlyForecast {
-                let degreesFormater = CelsiusFormater(fahrenheit: currentlyForecastData.temperature)
+                let degreesFormater = CelsiusManager(fahrenheit: currentlyForecastData.temperature)
                 strongDelegate.weeklyForecastTableViewController?.forecastData = dayliForecastData
                 DispatchQueue.main.async {
                     strongDelegate.hourlyForecastData = hourlyForecastData
-                    strongDelegate.degreesValueLabel.text = degreesFormater.resultString
+                    strongDelegate.degreesValueLabel.text = degreesFormater?.resultString
                     strongDelegate.view.layoutIfNeeded()
                     strongDelegate.weeklyForecastTableViewController?.tableView.reloadData()
                 }

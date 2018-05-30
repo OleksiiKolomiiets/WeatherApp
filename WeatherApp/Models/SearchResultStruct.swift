@@ -11,10 +11,11 @@ import MapKit
 
 struct SearchResultData {
     var city: String
-    var address: String
+    var address: String?
     
     init(_ data: MKMapItem) {
+        
         self.city = data.placemark.name ?? ""
-        self.address = AddressFormater(data.placemark).resultString
+        self.address = AddressManager(data.placemark)?.resultString
     } 
 }

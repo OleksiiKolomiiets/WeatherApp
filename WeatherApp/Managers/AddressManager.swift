@@ -9,9 +9,9 @@
 import Foundation
 import MapKit
 
-class AddressFormater: FormatterProtocol {
+class AddressManager: FormatterProtocol {
     
-    init(_ selectedItem: MKPlacemark) {
+    init? (_ selectedItem: MKPlacemark) {
         self.selectedItem = selectedItem
     }
     

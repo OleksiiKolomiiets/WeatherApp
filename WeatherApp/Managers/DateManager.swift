@@ -16,20 +16,20 @@ class DateManager: FormatterProtocol {
     private var date: Int
     private var timeZone: TimeZone
     
-    init(date: Int, datePattern: DatePattern, timeZone: TimeZone) {
+    init? (date: Int, datePattern: DatePattern, timeZone: TimeZone) {
         self.date = date
         self.timeZone = timeZone
         self.datePattern = datePattern
     }
     
     enum DatePattern {
-        case buDefault
+        case byDefault
         case hours
         case date
         
         var value: String {
             switch self {
-            case .buDefault:
+            case .byDefault:
                 return "yyyy-MM-dd HH:mm:ss"
             case .hours:
                 return "HH"
@@ -42,7 +42,7 @@ class DateManager: FormatterProtocol {
     private func dateFormatter(for date: Int, timeZone: TimeZone, pattern: DatePattern) -> String {
         let neededDate = Date(timeIntervalSince1970: TimeInterval(date))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DatePattern.buDefault.value
+        dateFormatter.dateFormat = DatePattern.byDefault.value
         dateFormatter.timeZone = timeZone
         
         let neededDateString = dateFormatter.string(from: neededDate)

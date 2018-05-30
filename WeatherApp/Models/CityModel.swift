@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CityManager {
+class CityModel {
     var cities: [String?] = [nil]
     var cityCount: Int {
         return self.cities.count
