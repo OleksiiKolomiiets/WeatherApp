@@ -25,7 +25,7 @@ class DateManager: FormatterProtocol {
     enum DatePattern {
         case byDefault
         case hours
-        case date
+        case days
         
         var value: String {
             switch self {
@@ -33,7 +33,7 @@ class DateManager: FormatterProtocol {
                 return "yyyy-MM-dd HH:mm:ss"
             case .hours:
                 return "HH"
-            case .date:
+            case .days:
                 return "dd-MMM-yyyy"
             }
         }

@@ -23,8 +23,8 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate {
     func backToRoot(with searchResults: String) {
         guard let strongDelegate = delegate else { return }
         strongDelegate.cityManager.addCity(searchResults)
-        strongDelegate.orderdViewControllers.append(strongDelegate.orderdViewControllers.last!)
-        strongDelegate.setViewControllers([strongDelegate.orderdViewControllers.last!], direction: .forward, animated: true, completion: nil)
+        let addedPage = strongDelegate.getViewController(withLocationString: searchResults)
+        strongDelegate.setViewControllers([addedPage], direction: .forward, animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     

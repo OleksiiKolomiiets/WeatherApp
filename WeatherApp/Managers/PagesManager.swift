@@ -11,9 +11,11 @@ import CoreLocation
 import UIKit
 
 class PagesManager {
-    
-    init() {
-        addFakeCities()
+   
+    enum PageType {
+        case previous(UIViewController)
+        case current(UIViewController)
+        case next(UIViewController)
     }
     
     let IDENTIFIER = "WeatherPage"
@@ -28,13 +30,7 @@ class PagesManager {
         return model.cities.map({ pagesManager.getViewController(withLocationString: $0) })
     }
     
-    private func addFakeCities() {
-        cityManager.addCity("kiev")
-        cityManager.addCity("lviv")
-        cityManager.addCity("Toronto")
-        cityManager.addCity("Tokyo")
-        cityManager.addCity("Los Angales")
-    }
+    
     
 //    func addPages() -> [UIViewController] {
 //        let weatherVC = self
@@ -46,7 +42,7 @@ class PagesManager {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: IDENTIFIER)
         guard let weatherViewController = viewController as? MainViewController else { return viewController as! MainViewController }
 //        weatherViewController.pageViewController = self
-//        weatherViewController.cityPageName = locationString
+        weatherViewController.cityPageName = locationString
         return weatherViewController
     }
 }

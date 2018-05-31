@@ -39,21 +39,25 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationUpdate() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        if self.cityPageName == nil {
-            self.lookUpCurrentLocation { (placemark) in
-                guard let locality: String = placemark?.locality else { return }
-                self.cityName = locality
-                self.updateWetherManager.location = locality
-                self.pageViewController?.cityManager.addCity(locality)
-            }
-        } else {
-            self.updateWetherManager.location =  self.cityPageName!
-        }        
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+//        locationManager.startUpdatingLocation()
+//        if self.cityPageName == nil {
+//            self.lookUpCurrentLocation { (placemark) in
+//                guard let locality: String = placemark?.locality else { return }
+//                self.cityName = locality
+//                self.updateWetherManager.location = locality
+//                self.pageViewController?.cityManager.addCity(locality)
+//            }
+//        } else {
+//            self.updateWetherManager.location =  self.cityPageName!
+//        }
+        if let cityPageName = self.cityPageName {
+            self.updateWetherManager.location =  cityPageName
+                
+        }
         self.containerViewForCollectionView.reloadData()
     }
     
@@ -69,11 +73,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             break
         case .restricted:
             print("restricted")
-            // If restricted by e.g. parental controls. User can't enable Location Services
             break
         case .denied:
             print("denied")
-            // If user denied your app access to Location Services, but can grant access from Settings.app
             break
         }
     }
