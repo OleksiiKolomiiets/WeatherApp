@@ -39,45 +39,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationUpdate() {
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.startUpdatingLocation()
-//        if self.cityPageName == nil {
-//            self.lookUpCurrentLocation { (placemark) in
-//                guard let locality: String = placemark?.locality else { return }
-//                self.cityName = locality
-//                self.updateWetherManager.location = locality
-//                self.pageViewController?.cityManager.addCity(locality)
-//            }
-//        } else {
-//            self.updateWetherManager.location =  self.cityPageName!
-//        }
         if let cityPageName = self.cityPageName {
             self.updateWetherManager.location =  cityPageName
-                
         }
         self.containerViewForCollectionView.reloadData()
-    }
-    
-    private func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined:
-            print("notDetermined")
-            manager.requestWhenInUseAuthorization()
-            break
-        case .authorizedWhenInUse, .authorizedAlways:
-            print("authorized")
-            manager.startUpdatingLocation()
-            break
-        case .restricted:
-            print("restricted")
-            break
-        case .denied:
-            print("denied")
-            break
-        }
     }
     
     private func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
@@ -108,6 +73,20 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             self.weeklyForecastTableViewController?.delegate = self            
         }
     }    
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.hourlyForecastData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCustom", for: indexPath)
+        guard let coustumCell = cell as? DayliForecastCollectionViewCell else { return cell }
+        coustumCell.configure(with: hourlyForecastData[indexPath.row])
+        return coustumCell
+    }
 }
 
 extension UIView {
@@ -141,19 +120,5 @@ extension UIView {
         set {
             layer.borderColor = newValue?.cgColor
         }
-    }
-}
-
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.hourlyForecastData.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellCustom", for: indexPath)
-        guard let coustumCell = cell as? DayliForecastCollectionViewCell else { return cell }
-        coustumCell.configure(with: hourlyForecastData[indexPath.row])
-        return coustumCell
     }
 }

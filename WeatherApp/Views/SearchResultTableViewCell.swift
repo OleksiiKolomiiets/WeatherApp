@@ -10,10 +10,8 @@ import UIKit
 import CoreLocation
 
 class SearchResultTableViewCell: UITableViewCell {
-
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    
+    @IBOutlet weak var addressLabel: UILabel!    
 }
 
 extension SearchResultTableViewCell {

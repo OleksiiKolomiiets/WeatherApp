@@ -22,6 +22,7 @@ class SearchCityViewController: UIViewController, UISearchBarDelegate {
     
     func backToRoot(with searchResults: String) {
         guard let strongDelegate = delegate else { return }
+        strongDelegate.clearPageLabel?.isHidden = true
         strongDelegate.cityManager.addCity(searchResults)
         let addedPage = strongDelegate.getViewController(withLocationString: searchResults)
         strongDelegate.setViewControllers([addedPage], direction: .forward, animated: true, completion: nil)

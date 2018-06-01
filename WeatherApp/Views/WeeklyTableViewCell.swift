@@ -9,10 +9,8 @@
 import UIKit
 
 class WeeklyTableViewCell: UITableViewCell {
-   
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var forecastDescriptionLabel: UILabel!
-
 }
 
 extension WeeklyTableViewCell: ConfigurableCellProtocol {

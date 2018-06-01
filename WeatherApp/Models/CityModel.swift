@@ -27,19 +27,8 @@ class CityModel {
         return cities[indexOfCurrentPage + 1]
     }
     
-    
-    var cityCount: Int {
-        return self.cities.count
-    }
-    var prevCountOfCities: Int = 0
-    
-    var isStarting = true
-    var wasCityAdd: Bool {
-        return prevCountOfCities < cityCount
-    }
-    
     func addCity(_ city: String) {
-        self.cities.append(city)
+        if !cities.contains(city) { self.cities.append(city) }
         print(self.cities)
     }
     
@@ -63,16 +52,5 @@ class CityModel {
         }
         return [previous, current, next]
     }
-    
-    enum PagePosition {
-        case next
-        case previous
-    }
-    
 }
 
-extension Optional: Hashable where Wrapped: Hashable {
-    public var hashValue: Int {
-        return self?.hashValue ?? 0
-    }
-}

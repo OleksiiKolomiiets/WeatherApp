@@ -8,8 +8,7 @@
 
 import UIKit
 
-class DayliForecastCollectionViewCell: UICollectionViewCell {
-    
+class DayliForecastCollectionViewCell: UICollectionViewCell {    
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var hourTemperatureLabel: UILabel!
 }
