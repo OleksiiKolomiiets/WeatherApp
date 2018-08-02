@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Firebase
+import FirebaseFirestore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        let settings = Firestore.firestore().settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        Firestore.firestore().settings = settings
        return true
     }
 

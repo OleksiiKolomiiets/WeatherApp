@@ -4,4 +4,6 @@ use_frameworks!
 
 target 'WeatherApp' do 
   pod 'DZNEmptyDataSet'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
 end
