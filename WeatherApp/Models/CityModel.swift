@@ -10,7 +10,20 @@ import Foundation
 
 class CityModel {
     
-    var cities: [String?] = []
+    var id = 0
+    
+    
+        
+    var cities: [String?] = [] {
+        didSet {
+            for index in 0 ..< cities.count {
+                if let cityName: String = self.cities[index] {
+                    let city = CityEntity(with: [TableField.id.rawValue : index,TableField.name.rawValue : cityName])
+                    FirebaseService.addCity(city: city) { _ in }
+                }
+            }
+        }
+    }
     
     func getPreviousPage(using current: String?) -> String? {
         guard let indexOfCurrentPage: Int = cities.index(of: current) else { return nil }
@@ -19,6 +32,7 @@ class CityModel {
         }
         return cities[indexOfCurrentPage - 1]
     }
+    
     func getNextPage(using current: String?) -> String? {
         guard let indexOfCurrentPage: Int = cities.index(of: current) else { return nil }
         if indexOfCurrentPage == cities.count - 1 {
@@ -28,11 +42,24 @@ class CityModel {
     }
     
     func addCity(_ city: String) {
-        if !cities.contains(city) { self.cities.append(city) }
-        print(self.cities)
+        if !self.cities.contains(city) {
+            self.cities.append(city)
+//            let id = self.cities.count
+//            let city = CityEntity(with: [TableField.id.rawValue : id,TableField.name.rawValue : city])
+//            FirebaseService.addCity(city: city) { _ in }
+        }
+    }
+    
+    func updatePages() {
+        FirebaseService.getAll { (cities, error) in
+            cities.forEach() {
+                self.addCity($0.name)
+            }
+        }
     }
     
     func getPages(using current: String?) -> [String?] {
+        updatePages()
         var previous: String?
         let current = current
         var next: String?

@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+struct CityEntity {
+    let id: Int
+    let name: String
+    
+    init(with dictionary: [String: Any]) {
+        self.id = dictionary[TableField.id.rawValue] as! Int
+        self.name = dictionary[TableField.name.rawValue] as! String
+    }
+    
+    var dictionary: [String : Any] {
+        return [
+            TableField.id.rawValue : id,
+            TableField.name.rawValue : name
+        ]
+    }
+}

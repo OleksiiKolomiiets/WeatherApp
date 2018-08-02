@@ -16,8 +16,15 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
     var locationCity: String?
     var cityManager = CityModel()
     let locationManager = CLLocationManager()
-    var orderdViewControllers: [String?] {
+    var orderdViewControllers: [String?]  {
         return cityManager.getPages(using: nil)
+    }
+    
+    var cities: [String]? {
+        didSet {
+            
+            self.view.layoutIfNeeded()
+        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
@@ -54,7 +61,22 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
+        cityManager.updatePages()
+        FirebaseService.getAll { (cities, _) in
+            var temporaryArray = [String]()
+            cities.forEach() { temporaryArray.append($0.name) }
+            self.cities = temporaryArray
+            self.setPages()
+            self.clearPageLabel?.removeFromSuperview()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func setPages() {
         if let city = orderdViewControllers[1]  {
+            self.clearPageLabel?.isHidden = true
+            self.view.layoutIfNeeded()
+            self.clearPageLabel?.isHidden = true
             let firstVC = self.getViewController(withLocationString: city)
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         } else {
@@ -95,14 +117,24 @@ class WeatherPagesViewController: UIPageViewController, UIPageViewControllerData
     }
     
     private func setLableForClearPage() {
-        clearPageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        clearPageLabel?.center = CGPoint(x: 160, y: 285)
-        clearPageLabel?.numberOfLines = 0
-        clearPageLabel?.textAlignment = .center
-        clearPageLabel?.text = "Please tap the \nAdd City\n button to see its forecast.\n⬇︎⬇︎⬇︎⬇︎⬇︎⬇︎⬇︎\n⬇︎⬇︎⬇︎⬇︎⬇︎\n⬇︎⬇︎⬇︎\n⬇︎"
-        clearPageLabel?.textColor = .white
-        if let clearPageLabel = clearPageLabel {
-            self.view.addSubview(clearPageLabel)
+        if clearPageLabel == nil {
+            clearPageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            clearPageLabel?.center = CGPoint(x: 160, y: 285)
+            clearPageLabel?.numberOfLines = 0
+            clearPageLabel?.textAlignment = .center
+            clearPageLabel?.text = "Please tap the \nAdd City\n button to see its forecast.\n⬇︎⬇︎⬇︎⬇︎⬇︎⬇︎⬇︎\n⬇︎⬇︎⬇︎⬇︎⬇︎\n⬇︎⬇︎⬇︎\n⬇︎"
+            clearPageLabel?.textColor = .white
+            if let clearPageLabel = clearPageLabel {
+                self.view.addSubview(clearPageLabel)
+                
+                clearPageLabel.translatesAutoresizingMaskIntoConstraints = false
+                clearPageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                clearPageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+                clearPageLabel.widthAnchor.constraint(equalToConstant: 160).isActive = true
+                clearPageLabel.heightAnchor.constraint(equalToConstant: 285).isActive = true
+            }
+        } else {
+            clearPageLabel?.removeFromSuperview()
         }
     }
     

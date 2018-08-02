@@ -28,6 +28,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     var cityPageName: String? 
     var cityName: String = "" {
         didSet {
+            self.view.layoutIfNeeded()
             self.cityNameLabel.text = self.cityName
         }
     }
