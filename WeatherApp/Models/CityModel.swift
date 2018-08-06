@@ -9,23 +9,22 @@
 import Foundation
 
 class CityModel {
-    
-    var id = 0
-    
-    
         
-    var cities: [String?] = [] {
+    var cities: [String] = ["Vinnitsa", "Kiev"] {
         didSet {
             for index in 0 ..< cities.count {
-                if let cityName: String = self.cities[index] {
-                    let city = CityEntity(with: [TableField.id.rawValue : index,TableField.name.rawValue : cityName])
-                    FirebaseService.addCity(city: city) { _ in }
+                let cityName: String = self.cities[index]
+                let city = CityEntity(with: [TableField.id.rawValue : index,TableField.name.rawValue : cityName])
+                FirebaseService.addCity(city: city) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
                 }
             }
         }
     }
     
-    func getPreviousPage(using current: String?) -> String? {
+    func getPreviousPage(using current: String) -> String? {
         guard let indexOfCurrentPage: Int = cities.index(of: current) else { return nil }
         if indexOfCurrentPage == 0 {
             return nil
@@ -33,7 +32,7 @@ class CityModel {
         return cities[indexOfCurrentPage - 1]
     }
     
-    func getNextPage(using current: String?) -> String? {
+    func getNextPage(using current: String) -> String? {
         guard let indexOfCurrentPage: Int = cities.index(of: current) else { return nil }
         if indexOfCurrentPage == cities.count - 1 {
             return nil
@@ -44,36 +43,30 @@ class CityModel {
     func addCity(_ city: String) {
         if !self.cities.contains(city) {
             self.cities.append(city)
-//            let id = self.cities.count
-//            let city = CityEntity(with: [TableField.id.rawValue : id,TableField.name.rawValue : city])
-//            FirebaseService.addCity(city: city) { _ in }
         }
     }
     
-    func updatePages() {
-        FirebaseService.getAll { (cities, error) in
-            cities.forEach() {
-                self.addCity($0.name)
-            }
-        }
-    }
-    
-    func getPages(using current: String?) -> [String?] {
-        updatePages()
+    func getPages() -> [String?] {
+        let startCitiesCount = 2
         var previous: String?
-        let current = current
+        var current: String?
         var next: String?
-        var isFoundThePage = false
-        var isSearchForCity = true
-        cities.forEach {
-            if let strongArgument = $0, isSearchForCity {
-                if current == strongArgument {
-                    isFoundThePage = true
-                } else if isFoundThePage {                    
-                    isSearchForCity = false
-                    next = $0
-                } else {
-                    previous = $0
+        if cities.count == startCitiesCount {
+            current = cities[0]
+            next = cities[1]
+        } else {
+            var isFoundThePage = false
+            var isSearchForCity = true
+            cities.forEach {
+                if isSearchForCity {
+                    if current == $0 {
+                        isFoundThePage = true
+                    } else if isFoundThePage {
+                        isSearchForCity = false
+                        next = $0
+                    } else {
+                        previous = $0
+                    }
                 }
             }
         }
