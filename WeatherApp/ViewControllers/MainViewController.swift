@@ -7,15 +7,13 @@
 //
 
 import UIKit
-import CoreLocation
 
-class MainViewController: UIViewController, CLLocationManagerDelegate {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var degreesValueLabel: UILabel!
     @IBOutlet weak var containerViewForCollectionView: UICollectionView!
     
-    let locationManager = CLLocationManager()
     var updateWetherManager = UpdateWetherManager()
     var pageViewController: WeatherPagesViewController?
     var weeklyForecastTableViewController: WeeklyForecastTableViewController?
@@ -44,21 +42,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             self.updateWetherManager.location =  cityPageName
         }
         self.containerViewForCollectionView.reloadData()
-    }
-    
-    private func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
-        if let lastLocation = self.locationManager.location {
-            CLGeocoder().reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
-                if error == nil {
-                    let firstLocation = placemarks?.first
-                    completionHandler(firstLocation)
-                } else {
-                    completionHandler(nil)
-                }
-            })
-        } else {
-            completionHandler(nil)
-        }
     }
     
     func updateUI(currentDegree: String) {

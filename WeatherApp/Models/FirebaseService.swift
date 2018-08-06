@@ -25,11 +25,24 @@ class FirebaseService {
     
     static func addCity(city: CityEntity, completion: @escaping (Error?) -> Void) {
         
-        var error: Error?
-        cities.forEach() {
-            if $0.name == city.name { completion(error); return }
+        var resultError: Error?
+        getAll { (cities, error) in
+            if let error = error {
+                resultError = error
+            } else {
+                self.cities.forEach() {
+                    if $0.name == city.name {
+                        completion(resultError)
+                        return                        
+                    }
+                }
+                Firestore.firestore().collection(TableName.city.rawValue).document().setData(city.dictionary, completion: { (error) in
+                    if let error = error {
+                        resultError = error
+                    }
+                    completion(resultError)
+                })
+            }
         }
-        Firestore.firestore().collection(TableName.city.rawValue).document().setData(city.dictionary)
-        completion(error)
     }
 }
